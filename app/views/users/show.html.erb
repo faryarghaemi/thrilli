@@ -1,0 +1,19 @@
+<h1><%= @user.first_name %><%= @user.last_name %></h1>
+
+
+<%= link_to('Edit user', edit_user_path) %>
+<%= button_to('Delete user', @user, :method => 'delete', :data => {:confirm => 'Are you sure?'}) %>
+
+<%= image_tag(@user.image) %>
+  <p>Date of Birth: <%= @user.dob %></p>
+  <p>Email: : <%= @user.email %></p>
+  <p>Phone Number: <%= @user.phone %></p>
+  <p>Gender: <%= @user.gender %></p>
+  <p>Occupation: <%= @user.occupation %></p>
+  <p>Description: <%= @user.description %></p>
+  <p>Smoker?: <%= @user.smoker %></p>
+  <p>Interests: <%= @user.interests %></p>
+  <p>Car?: <%= @user.car %></p>
+  <p>Car type: <%= @user.car_type %></p>
+  <p>Car model: <%= @user.car_model %></p>
+
