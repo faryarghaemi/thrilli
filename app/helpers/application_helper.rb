@@ -8,10 +8,10 @@ module ApplicationHelper
       #   links += "<li>#{ link_to('All users', users_path)}</li>"
       # end 
 
-      links += "<li>#{ link_to('Sign out ' + @current_user.first_name, login_path, :method => :delete) }</li>"
+      links += "<li>#{ link_to('Sign out ' + @current_user.first_name, login_path, :method => :delete) }</li><li>#{ link_to('New Adventure', new_adventure_path) }</li>"
     else
       links += "<li>#{ link_to('Sign up', new_user_path) }</li>
-    <li>#{ link_to('Log in', login_path) }</li>"
+    <li>#{ link_to('Log in', login_path) }</li><li>#{ link_to('New Adventure', new_adventure_path) }</li>"
     end
     links
   end 

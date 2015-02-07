@@ -1,0 +1,21 @@
+<h1><%= @adventure.title %></h1>
+
+<%= link_to('Edit adventure', edit_adventure_path) %>
+<%= button_to('Delete adventure', @adventure, :method => 'delete', :data => {:confirm => 'Are you sure?'}) %>
+
+<%= image_tag(@adventure.image, :class => 'adventure') %>
+  <p><%= @adventure.title %></p>
+  <p>Offer type: <%= @adventure.offer_type %></p>
+  <p>Adventure type: <%= @adventure.adventure_type %></p>
+  <p>Pickup location: <%= @adventure.pickup_location %></p>
+  <p>Activity location: <%= @adventure.activity_location %></p>
+  <p>Availability: <%= @adventure.availability %></p>
+  <p>Seats: <%= @adventure.seats %></p>
+  <p>Difficulty: <%= @adventure.difficulty %></p>
+  <p>Gender preference: <%= @adventure.gender_preference %></p>
+  <p>Sponsor company: <%= @adventure.sponsor_company %></p>
+  <p>Extras: <%= @adventure.extras %></p>
+  <p>Age limit: <%= @adventure.age_limit %></p>
+  <p>Duration: <%= @adventure.duration %></p>
+  <p>Overnight? <%= @adventure.overnight %></p>
+  <p>Description: <%= @adventure.description %></p>

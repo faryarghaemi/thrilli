@@ -1,0 +1,7 @@
+<h1>Welcome to Thrilli</h1>
+
+
+<% @adventures.each do |adventure| %>
+  <%= link_to(image_tag(adventure.image, :class => 'thumb'), adventure) %>
+  <p><%= link_to(adventure.title, adventure) %></p>
+<% end %>
