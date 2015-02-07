@@ -1,0 +1,96 @@
+<h1>Edit Profile</h1>
+
+<%= form_for @user do |f| %>
+
+  <p>
+    <%= f.label :first_name %>
+    <%= f.text_field :first_name, :autofocus => true %>
+  </p>
+
+  <p>
+    <%= f.label :last_name %>
+    <%= f.text_field :last_name %>
+  </p>
+
+  <p>
+    <%= f.label :email %>
+    <%= f.text_field :email %>
+  </p>
+
+  <p>
+    <%= f.label :password %>
+    <%= f.password_field :password %>
+  </p>
+
+  <p>
+    <%= f.label :password_confirmation %>
+    <%= f.password_field :password_confirmation %>
+  </p>
+
+  <p>
+    <%= f.label :dob %>
+    <%= f.text_field :dob, :autofocus => true %>
+  </p>
+
+  <p>
+    <%= f.label :phone %>
+    <%= f.text_field :phone %>
+  </p>
+
+  <p>   
+    <%= f.label :description %>     
+    <%= f.text_field :description %>
+  </p>  
+
+  <p>   
+    <%= f.label :smoker %>     
+    <%= f.text_field :smoker %>
+  </p>  
+
+  <p>   
+    <%= f.label :interests %>     
+    <%= f.text_field :interests %>
+  </p>  
+
+  <p>   
+    <%= f.label :car %>     
+    <%= f.text_field :car %>
+  </p>  
+
+  <p>   
+    <%= f.label :car_type %>     
+    <%= f.text_field :car_type %>
+  </p>  
+
+   <p>   
+    <%= f.label :car_year %>     
+    <%= f.text_field :car_year %>
+  </p> 
+
+  <p>   
+    <%= f.label :car_model %>     
+    <%= f.text_field :car_model %>
+  </p>  
+
+  <p>   
+    <%= f.label :occupation %>     
+    <%= f.text_field :occupation %>
+  </p> 
+
+  <p> 
+    <%= f.label :image %>
+    <%= f.url_field :image %> 
+  </p> 
+
+
+  <p>
+    <%= f.submit %>
+  </p>
+<% end %>
+
+
+
+
+
+
+

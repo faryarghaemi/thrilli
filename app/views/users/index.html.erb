@@ -1,0 +1,8 @@
+<h1>Welcome to Thrilli</h1>
+
+
+<% @users.each do |user| %>
+  <%= link_to(image_tag(user.image, :class => 'thumb'), user) %>
+  <p><%= link_to(user.first_name, user) %></p>
+<% end %>
+
