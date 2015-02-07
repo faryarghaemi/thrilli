@@ -1,0 +1,76 @@
+<%= form_for @adventure do |f| %>
+
+  <%= f.label :offer_type %>
+  <%= f.select(:offer_type) do %>
+  <% [['Offering'], ['Wanting']].each do |c| -%>
+    <%= content_tag(:option, c.first, value: c.last) %>
+    <% end %>
+  <% end %>
+  
+  <%= f.label :adventure_type %>
+  <%= f.select(:adventure_type) do %>
+  <% [['Backpacking'], ['Scuba Diving'], ['Snowboarding/Skiing'], ['Snowmobiling'], ['Cycling'], ['Mountain Biking'], ['Fishing'], ['Hiking'], ['Kayaking'], ['Kite Surfing'], ['Dirt Biking'], ['Paintballing'], ['Camping'], ['ATVing'], ['Rafting'], ['Rappelling'], ['Rock Climbing(Indoor)'], ['Rock Climbing(Outdoor)'], ['Skydiving'], ['Slacklining'], ['Surfing'], ['Snorkling'], ['Mountaineering'], ['Sailing'], ['Motorcycle Racing(on track)'], ['Car Racing(on track)'], ['Canyoneering'], ['Cave Diving'], ['Base Jumping'], ['Water Skiing'], ['Jet Skiing'], ['Wakeboarding'], ['Outdoor sporting(ball sports)'], ['Training']].each do |c| -%>
+    <%= content_tag(:option, c.first, value: c.last) %>
+    <% end %>
+  <% end %>
+
+  <%= f.label :title %>
+  <%= f.text_field :title %>
+
+  <%= f.label :pickup_location %>
+  <%= f.text_field :pickup_location %>
+
+  <%= f.label :activity_location %>
+  <%= f.text_field :activity_location %>
+
+  <%= f.label :availability %>
+  <%= f.text_field :availability %>
+
+  <%= f.label :description %>
+  <%= f.text_field :description %>
+
+  <%= f.label :seats %>
+  <%= f.select(:seats) do %>
+  <% [['0', 0], ['1', 1], ['2', 2], ['3', 3], ['4', 4], ['5', 5], ['6', 6], ['7', 7], ['8', 8], ['9', 9], ['10+', '10+']].each do |c| -%>
+    <%= content_tag(:option, c.first, value: c.last) %>
+    <% end %>
+  <% end %>
+
+  <%= f.label :difficulty %>
+  <%= f.select(:difficulty) do %>
+  <% [['Novice'], ['Beginner'], ['Intermediate'], ['Advanced'], ['Expert']].each do |c| -%>
+    <%= content_tag(:option, c.first, value: c.last) %>
+    <% end %>
+  <% end %>
+
+  <%= f.label :gender_preference %>
+  <%= f.select(:gender_preference) do %>
+  <% [['None'], ['Female'], ['Male']].each do |c| -%>
+    <%= content_tag(:option, c.first, value: c.last) %>
+    <% end %>
+  <% end %>
+
+  <%= f.label :sponsor_company %>
+  <%= f.text_field :sponsor_company %>
+
+  <%= f.label :extras %>
+  <%= f.text_field :extras %>
+
+  <%= f.label :age_limit %>
+  <%= f.text_field :age_limit %>
+
+  <%= f.label :duration %>
+  <%= f.text_field :duration %>
+
+  <%= f.label :overnight %>
+  <%= f.select(:overnight) do %>
+  <% [['Yes'], ['No'], ['Possibly']].each do |c| -%>
+    <%= content_tag(:option, c.first, value: c.last) %>
+    <% end %>
+  <% end %>
+
+  <%= f.label :image %>
+  <%= f.url_field :image %>
+
+<%= f.submit %>
+<% end %>

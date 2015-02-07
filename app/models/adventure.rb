@@ -17,9 +17,10 @@
 #  extras            :text
 #  age_limit         :integer
 #  duration          :text
-#  overnight         :boolean
+#  overnight         :string
 #  created_at        :datetime
 #  updated_at        :datetime
+#  title             :string
 #
 
 class Adventure < ActiveRecord::Base 
