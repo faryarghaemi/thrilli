@@ -21,6 +21,7 @@
 #  created_at        :datetime
 #  updated_at        :datetime
 #  title             :string
+#  user_id           :integer
 #
 
 class Adventure < ActiveRecord::Base 

@@ -8,13 +8,17 @@ class AdventuresController < ApplicationController
   end
 
   def create
-    adventure = Adventure.create(adventure_params)
+    adventure = @current_user.adventures.create(adventure_params)
     redirect_to(adventure)
   end
 
   def show
     @adventure = Adventure.find params[:id]
   end
+
+  def mine 
+    @current_user.adventures
+  end 
 
   def edit
     @adventure = Adventure.find params[:id]
