@@ -3,7 +3,7 @@
 <%= link_to('Edit adventure', edit_adventure_path) %>
 <%= button_to('Delete adventure', @adventure, :method => 'delete', :data => {:confirm => 'Are you sure?'}) %>
 
-<%= image_tag(@adventure.image, :class => 'adventure') %>
+<%= image_tag(@adventure.image, :class => 'thumb') %>
   <p><%= @adventure.title %></p>
   <p>Offer type: <%= @adventure.offer_type %></p>
   <p>Adventure type: <%= @adventure.adventure_type %></p>
@@ -19,3 +19,4 @@
   <p>Duration: <%= @adventure.duration %></p>
   <p>Overnight? <%= @adventure.overnight %></p>
   <p>Description: <%= @adventure.description %></p>
+  <p>Creator Id: <%= @creator_id %></p>
