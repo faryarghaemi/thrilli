@@ -1,0 +1,4 @@
+<% @current_user.adventures.each do |adventure| %>
+<%= link_to(adventure.title, edit_adventure_path(@current_user)) %>
+<%= image_tag(adventure.image, :class => 'thumb') %>
+<% end %>
