@@ -3,5 +3,12 @@
 
 <% @adventures.each do |adventure| %>
   <%= link_to(image_tag(adventure.image, :class => 'thumb'), adventure) %>
-  <p><%= link_to(adventure.title, adventure) %></p>
+
+
+
+
+  <p><%= link_to(adventure.user_id, adventure) %><%= link_to(adventure.title, adventure) %></p>
 <% end %>
+
+
+

@@ -8,3 +8,5 @@
 
 
 admin = User.create(:first_name => 'admin', :email => 'admin@gmail.com', :password => 'chicken', :password_confirmation => 'chicken', :is_admin => true)
+
+# Adventure.first.user_id = User.third.id
