@@ -1,6 +1,7 @@
 class AdventuresController < ApplicationController
   def index
     @adventures = Adventure.all
+    # @adventure = Adventure.find params[:id]
   end
 
   def new
