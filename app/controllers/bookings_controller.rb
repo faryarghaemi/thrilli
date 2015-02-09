@@ -1,25 +1,46 @@
 class BookingsController < ApplicationController
 
+  def new 
+    @adventure = Adventure.find params[:adventure_id]
+    @booking = @adventure.bookings.new 
+  end 
+
   def create 
-    @current_adventure = Adventure.find_by :id => session[:adventure_id]
-    booking_user = @current_user.bookings.create(booking_params)
-    booking_adventure = @current_adventure.bookings.create(booking_params)
-    redirect_to root_path
+    @adventure = Adventure.find params[:adventure_id]
+    @booking = @adventure.bookings.create params[:booking]
+    redirect_to(adventure_booking_path)
+  end 
+
+  def edit 
+    @adventure = Adventure.find params[:adventure_id]
+    @booking = @adventure.bookings.find params[:id]
+  end 
+
+  def update 
+    @adventure = Adventure.find params[:adventure_id]
+    @booking = @adventure.bookings.find params[:id]
   end 
 
   def index 
-    @bookings = Booking.all 
+    @adventure = Adventure.find params[:adventure_id]
+    @bookings = @adventure.bookings 
   end 
 
   def show
-    @current_user.bookings
-    @current_adventure.bookings
+    @adventure = Adventure.find params[:adventure_id]
+    @booking = @adventure.bookings.find params[:id]
+  end 
+
+  def destroy 
+    @adventure = Adventure.find params[:adventure_id]
+    @booking = @adventure.bookings.find params[:id]
+    @booking.destroy 
   end 
 
   private 
 
   def booking_params 
-    params.require(:booking).permit(:user_id, :adventure_id)
+    params.require(:booking).permit(:user_id, :adventure_id, :availability)
   end
 
 end 

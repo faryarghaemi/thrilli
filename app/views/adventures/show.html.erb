@@ -1,11 +1,8 @@
 <h1><%= @adventure.title %></h1>
 
-<%= link_to('Edit adventure', edit_adventure_path) %>
-<%= button_to('Delete adventure', @adventure, :method => 'delete', :data => {:confirm => 'Are you sure?'}) %>
 
 <%= image_tag(@adventure.image, :class => 'thumb') %>
-  <p><%= @adventure.title %></p>
-  <p><%= link_to('Book Adventure', create_booking_path) %></p>
+  <p><%= link_to('Request Booking', new_adventure_booking_path(:adventure_id => @adventure.id)) %></p>
   <p>Offer type: <%= @adventure.offer_type %></p>
   <p>Adventure type: <%= @adventure.adventure_type %></p>
   <p>Pickup location: <%= @adventure.pickup_location %></p>
