@@ -21,7 +21,8 @@
 #  updated_at        :datetime
 #  title             :string
 #  user_id           :integer
-#  availability      :datetime
+#  checkin           :datetime
+#  checkout          :datetime
 #
 
 class Adventure < ActiveRecord::Base 

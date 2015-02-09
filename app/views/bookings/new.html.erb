@@ -1,9 +1,14 @@
-HELLO WORLD 
+
 
 <%=  form_for [@adventure,@booking] do |f| %>
 
-<%= f.label :availability %>
-<%= f.text_field :availability, :class => 'datepicker' %>
+<%= f.label :checkin %>
+<%= f.text_field :checkin, :class => 'datepicker' %>
+
+<%= f.label :checkout %>
+<%= f.text_field :checkout, :class => 'datepicker' %>
+
+<%= f.submit %>
 
 <% end  %>
 

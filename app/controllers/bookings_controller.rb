@@ -7,8 +7,10 @@ class BookingsController < ApplicationController
 
   def create 
     @adventure = Adventure.find params[:adventure_id]
-    @booking = @adventure.bookings.create params[:booking]
-    redirect_to(adventure_booking_path)
+
+    @booking = @adventure.bookings.create(booking_params)
+
+    redirect_to(adventure_booking_path(@adventure, @booking))
   end 
 
   def edit 
@@ -19,6 +21,7 @@ class BookingsController < ApplicationController
   def update 
     @adventure = Adventure.find params[:adventure_id]
     @booking = @adventure.bookings.find params[:id]
+    @booking.update
   end 
 
   def index 
