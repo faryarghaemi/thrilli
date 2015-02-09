@@ -1,0 +1,13 @@
+<%= image_tag(@booking.user.image, :class => 'thumb') %>
+<h1> <%= @booking.user.first_name %></h1>
+  <p>Date of Birth: <%= @booking.user.dob %></p>
+  <p>Email: : <%= @booking.user.email %></p>
+  <p>Phone Number: <%= @booking.user.phone %></p>
+  <p>Gender: <%= @booking.user.gender %></p>
+  <p>Occupation: <%= @booking.user.occupation %></p>
+  <p>Description: <%= @booking.user.description %></p>
+  <p>Smoker?: <%= @booking.user.smoker %></p>
+  <p>Interests: <%= @booking.user.interests %></p>
+  <p>Car?: <%= @booking.user.car %></p>
+  <p>Car type: <%= @booking.user.car_type %></p>
+  <p>Car model: <%= @booking.user.car_model %></p>

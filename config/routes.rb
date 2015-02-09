@@ -8,9 +8,10 @@ Rails.application.routes.draw do
     resources :bookings 
   end 
 
+  get '/adventures/:adventure_id/bookings/:booking_id/users/:id' => 'bookings#user', :as => 'bookings_user'
 
   get '/adventure/mine' => 'adventures#mine', :as => 'adventures_mine'
-  get '/error' => 'pages#error', :as => 'pages_error'
+
 
   get '/login' => 'session#new'
   post '/login' => 'session#create'

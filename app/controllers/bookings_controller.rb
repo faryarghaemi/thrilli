@@ -7,8 +7,10 @@ class BookingsController < ApplicationController
 
   def create 
     @adventure = Adventure.find params[:adventure_id]
-
-    @booking = @adventure.bookings.create(booking_params)
+    @booking = Booking.new(booking_params)
+    @booking.user = @current_user
+    @booking.adventure = @adventure 
+    @booking.save 
 
     redirect_to(adventure_booking_path(@adventure, @booking))
   end 
@@ -40,10 +42,16 @@ class BookingsController < ApplicationController
     @booking.destroy 
   end 
 
+  def user 
+    @adventure = Adventure.find params[:adventure_id]
+    @booking = @adventure.bookings.find params[:booking_id]
+  end 
+
+
   private 
 
   def booking_params 
-    params.require(:booking).permit(:user_id, :adventure_id, :availability)
+    params.require(:booking).permit(:user_id, :adventure_id, :availability, :checkin, :checkout)
   end
 
 end 

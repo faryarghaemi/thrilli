@@ -9,6 +9,7 @@
 #  updated_at   :datetime
 #  checkin      :datetime
 #  checkout     :datetime
+#  accepted     :string
 #
 
 class Booking < ActiveRecord::Base 
