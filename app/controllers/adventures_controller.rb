@@ -1,4 +1,7 @@
 class AdventuresController < ApplicationController
+
+  before_action :logged_in?, :only => [:new]
+  
   def index
     @adventures = Adventure.all
     # @adventure = Adventure.find params[:id]
@@ -32,7 +35,7 @@ class AdventuresController < ApplicationController
   end
 
   def destroy
-    adventure = Adventure.find params[:id]
+    adventure = Adventure.find params[:id] 
     adventure.destroy
     redirect_to(adventures_path)
   end
@@ -40,6 +43,6 @@ class AdventuresController < ApplicationController
   private 
 
   def adventure_params
-    params.require(:adventure).permit(:offer_type, :adventure_type, :image, :pickup_location, :activity_location, :availibility, :description, :seats, :difficulty, :gender_preference, :sponsor_company, :extras, :age_limit, :duration, :overnight, :title, :creator_id)
+    params.require(:adventure).permit(:offer_type, :adventure_type, :image, :pickup_location, :activity_location, :availibility, :description, :seats, :difficulty, :gender_preference, :sponsor_company, :extras, :age_limit, :duration, :overnight, :title, :creator_id, bookings_attributes: [:adventure_id, :user_id])
   end 
 end

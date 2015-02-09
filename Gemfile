@@ -35,6 +35,7 @@ gem 'bcrypt', '~> 3.1.7'
 
 gem 'haml'
 gem 'bootstrap-sass'
+gem 'bootstrap-datepicker-rails'
 
 
 # debugger gems 

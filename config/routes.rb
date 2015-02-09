@@ -1,10 +1,13 @@
 Rails.application.routes.draw do
   root :to => 'adventures#index'
-  resources :users, :adventures, :bookings 
-  delete '/adventures/:id' => 'adventures#destroy', :as => 'delete_adventure'
+  resources :users
+  
+  # delete '/adventures/:id/delete' => 'adventures#destroy', :as => 'delete_adventure'
 
+  resources :adventures do 
+    resources :bookings 
+  end 
 
-  post '/bookings' => 'bookings#create', :as => 'create_booking'
 
   get '/adventure/mine' => 'adventures#mine', :as => 'adventures_mine'
   get '/error' => 'pages#error', :as => 'pages_error'

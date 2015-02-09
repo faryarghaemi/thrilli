@@ -7,6 +7,7 @@
 #  adventure_id :integer
 #  created_at   :datetime
 #  updated_at   :datetime
+#  availability :datetime
 #
 
 class Booking < ActiveRecord::Base 

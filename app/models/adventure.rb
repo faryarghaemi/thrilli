@@ -8,7 +8,6 @@
 #  image             :text
 #  pickup_location   :text
 #  activity_location :text
-#  availability      :text
 #  description       :text
 #  seats             :integer
 #  difficulty        :string
@@ -22,6 +21,7 @@
 #  updated_at        :datetime
 #  title             :string
 #  user_id           :integer
+#  availability      :datetime
 #
 
 class Adventure < ActiveRecord::Base 

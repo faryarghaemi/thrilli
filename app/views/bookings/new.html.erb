@@ -1,0 +1,15 @@
+HELLO WORLD 
+
+<%=  form_for [@adventure,@booking] do |f| %>
+
+<%= f.label :availability %>
+<%= f.text_field :availability, :class => 'datepicker' %>
+
+<% end  %>
+
+
+<script type="text/javascript">
+  $(document).ready(function(){
+    $('.datepicker').datepicker();
+  });
+</script>
