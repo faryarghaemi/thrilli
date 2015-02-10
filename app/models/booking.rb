@@ -10,6 +10,7 @@
 #  checkin      :datetime
 #  checkout     :datetime
 #  accepted     :string
+#  message      :text
 #
 
 class Booking < ActiveRecord::Base 

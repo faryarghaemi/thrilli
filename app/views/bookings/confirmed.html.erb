@@ -1,0 +1,8 @@
+<h1>Confirmed Bookings</h1>
+
+
+
+<% @bookings.each do |booking| %>
+<p><%= link_to(booking.adventure.user.first_name, booking.adventure.user(booking.adventure.user.id)) %>'s <%= link_to(booking.adventure.title, booking.adventure(booking.adventure.id)) %> Adventure</p>
+<%= image_tag(booking.adventure.image, :class => 'thumb') %>
+<% end %>

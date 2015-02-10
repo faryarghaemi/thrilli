@@ -1,7 +1,14 @@
 <%= image_tag(@booking.user.image, :class => 'thumb') %>
-<h1> <%= @booking.user.first_name %></h1>
+
+
+  <h2>Booking Info:</h2>
+  <%= @booking.user.first_name %> can join you <%= @booking.checkin.strftime('%A, %b %e, %Y') %> through <%= @booking.checkout.strftime('%A, %b %e, %Y') %>.
+
+  <p><%= link_to('Accept', yes_path(:adventure_id => @adventure.id, :booking_id => @booking.id)) %> or  <%= link_to('Reject', no_path(:adventure_id => @adventure.id, :booking_id => @booking.id)) %></p>
+
+  <h3> <%= @booking.user.first_name %></h1>
   <p>Date of Birth: <%= @booking.user.dob %></p>
-  <p>Email: : <%= @booking.user.email %></p>
+  <p>Email: <%= link_to(@booking.user.email, mailto:@booking.user.email) %></p>
   <p>Phone Number: <%= @booking.user.phone %></p>
   <p>Gender: <%= @booking.user.gender %></p>
   <p>Occupation: <%= @booking.user.occupation %></p>
@@ -11,3 +18,6 @@
   <p>Car?: <%= @booking.user.car %></p>
   <p>Car type: <%= @booking.user.car_type %></p>
   <p>Car model: <%= @booking.user.car_model %></p>
+
+
+

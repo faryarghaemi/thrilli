@@ -15,20 +15,31 @@ class BookingsController < ApplicationController
     redirect_to(adventure_booking_path(@adventure, @booking))
   end 
 
-  def edit 
+  # def edit 
+  #   @adventure = Adventure.find params[:adventure_id]
+  #   @booking = @adventure.bookings.find params[:id]
+  # end 
+
+  def yes 
     @adventure = Adventure.find params[:adventure_id]
-    @booking = @adventure.bookings.find params[:id]
+    @booking = @adventure.bookings.find params[:booking_id]
+    @booking.accepted = 'yes'
+    @booking.save
+    redirect_to(adventures_mine_path(@current_user))
   end 
 
-  def update 
+  def no 
     @adventure = Adventure.find params[:adventure_id]
-    @booking = @adventure.bookings.find params[:id]
-    @booking.update
+    @booking = Booking.find params[:booking_id]
+    @booking.accepted = 'no'
+    @booking.save
+    # redirect_to(adventures_mine_path(@current_user))
   end 
+
 
   def index 
     @adventure = Adventure.find params[:adventure_id]
-    @bookings = @adventure.bookings 
+    @bookings = @adventure.bookings.where :accepted => nil
   end 
 
   def show
@@ -36,15 +47,34 @@ class BookingsController < ApplicationController
     @booking = @adventure.bookings.find params[:id]
   end 
 
-  def destroy 
+  # def destroy 
+  #   @adventure = Adventure.find params[:adventure_id]
+  #   @booking = @adventure.bookings.find params[:id]
+  #   @booking.destroy 
+  # end 
+
+  def update 
     @adventure = Adventure.find params[:adventure_id]
     @booking = @adventure.bookings.find params[:id]
-    @booking.destroy 
+    @booking.update :message => params[:booking][:message]
+    redirect_to(adventures_mine_path(@current_user))
   end 
 
   def user 
     @adventure = Adventure.find params[:adventure_id]
     @booking = @adventure.bookings.find params[:booking_id]
+  end 
+
+  def pending 
+    @bookings = @current_user.bookings.where :accepted => nil 
+  end 
+
+  def confirmed
+    @bookings = @current_user.bookings.where(:accepted => 'yes')
+  end 
+
+  def cancellations 
+    @bookings = @current_user.bookings.where(:accepted => 'no')
   end 
 
 

@@ -2,7 +2,10 @@
 
 
 <%= image_tag(@adventure.image, :class => 'thumb') %>
+  <% if (@adventure.booking_ids & @current_user.booking_ids).empty? && (@adventure.user_id != @current_user.id) %>
   <p><%= link_to('Request Booking', new_adventure_booking_path(:adventure_id => @adventure.id)) %></p>
+  <% end %>
+
   <p>Offer type: <%= @adventure.offer_type %></p>
   <p>Adventure type: <%= @adventure.adventure_type %></p>
   <p>Pickup location: <%= @adventure.pickup_location %></p>

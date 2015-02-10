@@ -2,7 +2,7 @@
 <h1> <%= @adventure.title %></h1>
 
 
-<% @adventure.bookings.each do |booking| %>
+<% @bookings.each do |booking| %>
 
 <p><%= image_tag(booking.user.image, :class => 'thumb') %></p>
 <p><%= link_to(booking.user.first_name, bookings_user_path(:adventure_id => @adventure.id, :booking_id => booking.id, :id => booking.user_id)) %> would like join your adventure.</p>

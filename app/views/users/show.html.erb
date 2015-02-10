@@ -1,12 +1,13 @@
-<h1><%= @user.first_name %><%= @user.last_name %></h1>
+<h1><%= @user.first_name %> <%= @user.last_name %></h1>
 
-
+<% if @current_user.is_admin? %>
 <%= link_to('Edit user', edit_user_path) %>
 <%= button_to('Delete user', @user, :method => 'delete', :data => {:confirm => 'Are you sure?'}) %>
+<% end %>
 
-<%= image_tag(@user.image) %>
+<%= image_tag(@user.image, :class => 'thumb') %>
   <p>Date of Birth: <%= @user.dob %></p>
-  <p>Email: : <%= @user.email %></p>
+  <p>Email: <%= link_to(@user.email, mailto:@user.email) %></p>
   <p>Phone Number: <%= @user.phone %></p>
   <p>Gender: <%= @user.gender %></p>
   <p>Occupation: <%= @user.occupation %></p>

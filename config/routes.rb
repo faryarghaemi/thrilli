@@ -8,7 +8,14 @@ Rails.application.routes.draw do
     resources :bookings 
   end 
 
+
   get '/adventures/:adventure_id/bookings/:booking_id/users/:id' => 'bookings#user', :as => 'bookings_user'
+
+  get '/pending' => 'bookings#pending'
+  get '/confirmed' => 'bookings#confirmed'
+  get '/cancellations' => 'bookings#cancellations'
+  get '/yes' => 'bookings#yes'
+  get '/no/:booking_id' => 'bookings#no', :as => 'no'
 
   get '/adventure/mine' => 'adventures#mine', :as => 'adventures_mine'
 
