@@ -7,15 +7,35 @@
 <p>Your availabilities: <%= @booking.checkin.strftime('%A, %b %e, %Y') %> through
 <%= @booking.checkout.strftime('%A, %b %e, %Y')%></p>
 
+<% if @adventure.adventure_type != nil && @adventure.adventure_type != "" %>
   <p>Adventure type: <%= @adventure.adventure_type %></p>
+<% end  %>
+
+<% if @adventure.pickup_location != nil && @adventure.pickup_location != "" %>
   <p>Pickup location: <%= @adventure.pickup_location %></p>
+<% end %>
+<% if @adventure.activity_location != nil && @adventure.activity_location != "" %>
   <p>Activity location: <%= @adventure.activity_location %></p>
+<% end %>
+<% if @adventure.difficulty != nil && @adventure.difficulty != "" %>
   <p>Difficulty: <%= @adventure.difficulty %></p>
+<% end %>
+<% if @adventure.sponsor_company != nil && @adventure.sponsor_company != "" %>
   <p>Sponsor company: <%= @adventure.sponsor_company %></p>
+<% end %>
+<% if @adventure.extras != nil && @adventure.extras != "" %>
   <p>Extras: <%= @adventure.extras %></p>
+<% end %>
+<% if @adventure.duration != nil && @adventure.duration != "" %>
   <p>Duration: <%= @adventure.duration %></p>
+<% end %>
+<% if @adventure.overnight != nil && @adventure.overnight != "" %>
   <p>Overnight? <%= @adventure.overnight %></p>
+<% end %>
+
+<% if @adventure.description != nil && @adventure.description != "" %>
   <p>Description: <%= @adventure.description %></p>
+<% end %>
 
 
 

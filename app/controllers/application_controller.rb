@@ -15,6 +15,7 @@ class ApplicationController < ActionController::Base
 
   def logged_in?
     redirect_to(login_path) unless @current_user.present? 
+    flash[:error] = "You must be logged in to do that" unless @current_user.present? 
   end 
 
 end

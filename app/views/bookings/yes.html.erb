@@ -1,0 +1,11 @@
+<h3>Thank you for accepting <%= @booking.user.first_name %>!</h3>
+
+<h4>Message <%= @booking.user.first_name %> more information about you or the adventure if you'd like.</h4>
+
+<%= form_for [@adventure, @booking] do |f| %>
+
+  <%= f.label :message %>
+  <%= f.text_field :message %>
+
+<%= f.submit 'Send Message' %>
+<% end %>

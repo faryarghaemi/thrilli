@@ -74,17 +74,21 @@ class BookingsController < ApplicationController
     @booking = @adventure.bookings.find params[:booking_id]
   end 
 
-  def pending 
-    @bookings = @current_user.bookings.where :accepted => nil 
+  def bookings 
+    @bookings = @current_user.bookings
   end 
 
-  def confirmed
-    @bookings = @current_user.bookings.where(:accepted => 'yes')
-  end 
+  # def pending 
+  #   @bookings = @current_user.bookings.where :accepted => nil 
+  # end 
 
-  def cancellations 
-    @bookings = @current_user.bookings.where(:accepted => 'no')
-  end 
+  # def confirmed
+  #   @bookings = @current_user.bookings.where(:accepted => 'yes')
+  # end 
+
+  # def cancellations 
+  #   @bookings = @current_user.bookings.where(:accepted => 'no')
+  # end 
 
 
   private 

@@ -1,0 +1,48 @@
+
+
+<% c = @bookings.where(:accepted => 'yes') %>
+
+<% if c.count > 0 %>
+  <h1>Confirmed Bookings</h1>
+<% end %>
+
+<% c.each do |booking| %>
+
+  <p><%= image_tag(booking.adventure.user.image, :class => 'thumb') %><%= link_to(booking.adventure.user.first_name, booking.adventure.user(booking.adventure.user.id)) %>'s <%= link_to(booking.adventure.title, booking.adventure(booking.adventure.id)) %> Adventure</p>
+
+  <%= image_tag(booking.adventure.image, :class => 'thumb') %>
+  <p><%= booking.adventure.user.first_name %> says: '<%= booking.message %>'</p>
+  <p>Other adventurers on the trip: <%=  %></p>
+<% end %>
+
+
+
+<% p = @bookings.where(:accepted => nil ) %>
+
+<% if p.count > 0 %>
+  <h1>Pending Bookings</h1>
+<% end %>
+
+<% p.each do |booking| %>
+
+  <p><%= link_to(booking.adventure.user.first_name, booking.adventure.user(booking.adventure.user.id)) %>'s <%= link_to(booking.adventure.title, booking.adventure(booking.adventure.id)) %> Adventure</p>
+
+  <%= image_tag(booking.adventure.image, :class => 'thumb') %>
+<% end %>
+
+
+
+<% x = @bookings.where(:accepted => 'no' ) %>
+
+<% if x.count > 0 %>
+  <h1>Cancellations</h1>
+<% end %>
+
+<% x.each do |booking| %>
+
+  <p><%= link_to(booking.adventure.user.first_name, booking.adventure.user(booking.adventure.user.id)) %>'s <%= link_to(booking.adventure.title, booking.adventure(booking.adventure.id)) %> Adventure</p>
+
+  <%= image_tag(booking.adventure.image, :class => 'thumb') %>
+  <p><%= booking.adventure.user.first_name %> says: '<%= booking.message %>'</p>
+<% end %>
+

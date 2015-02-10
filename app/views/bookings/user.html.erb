@@ -6,18 +6,52 @@
 
   <p><%= link_to('Accept', yes_path(:adventure_id => @adventure.id, :booking_id => @booking.id)) %> or  <%= link_to('Reject', no_path(:adventure_id => @adventure.id, :booking_id => @booking.id)) %></p>
 
-  <h3> <%= @booking.user.first_name %></h1>
-  <p>Date of Birth: <%= @booking.user.dob %></p>
-  <p>Email: <%= link_to(@booking.user.email, mailto:@booking.user.email) %></p>
-  <p>Phone Number: <%= @booking.user.phone %></p>
-  <p>Gender: <%= @booking.user.gender %></p>
-  <p>Occupation: <%= @booking.user.occupation %></p>
-  <p>Description: <%= @booking.user.description %></p>
-  <p>Smoker?: <%= @booking.user.smoker %></p>
-  <p>Interests: <%= @booking.user.interests %></p>
-  <p>Car?: <%= @booking.user.car %></p>
-  <p>Car type: <%= @booking.user.car_type %></p>
-  <p>Car model: <%= @booking.user.car_model %></p>
+
+  <h3> <%= @booking.user.first_name %></h3>
+
+  <% if @booking.user.dob != nil && @booking.user.dob != "" %>
+    <p>Date of Birth: <%= @booking.user.dob %></p>
+  <% end %>
+
+  <% if @booking.user.email != nil && @booking.user.email != "" %>
+    <p>Email: <%= link_to(@booking.user.email, mailto:@booking.user.email) %></p>
+  <% end %>
+
+  <% if @booking.user.phone != nil && @booking.user.phone != "" %>
+    <p>Phone Number: <%= @booking.user.phone %></p>
+  <% end %>
+
+  <% if @booking.user.gender != nil && @booking.user.gender != "" %>
+    <p>Gender: <%= @booking.user.gender %></p>
+  <% end %>
+
+  <% if @booking.user.occupation != nil && @booking.user.occupation != "" %>
+    <p>Occupation: <%= @booking.user.occupation %></p>
+  <% end %>
+
+  <% if @booking.user.description != nil && @booking.user.description != "" %>
+    <p>Description: <%= @booking.user.description %></p>
+  <% end %>
+
+  <% if @booking.user.smoker != nil && @booking.user.smoker != "" %>
+    <p>Smoker?: <%= @booking.user.smoker %></p>
+  <% end %>
+
+  <% if @booking.user.interests != nil && @booking.user.interests != "" %>
+    <p>Interests: <%= @booking.user.interests %></p>
+  <% end %>
+
+  <% if @booking.user.car != nil && @booking.user.car != "" %>
+    <p>Car?: <%= @booking.user.car %></p>
+  <% end %>
+
+  <% if @booking.user.car_type != nil && @booking.user.car_type != "" %>
+    <p>Car type: <%= @booking.user.car_type %></p>
+  <% end %>
+
+  <% if @booking.user.car_model != nil && @booking.user.car_model != "" %>
+    <p>Car model: <%= @booking.user.car_model %></p>
+  <% end %>
 
 
 

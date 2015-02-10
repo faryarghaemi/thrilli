@@ -23,6 +23,8 @@
 #  user_id           :integer
 #  checkin           :datetime
 #  checkout          :datetime
+#  disappear         :boolean          default("false")
+#  other             :string
 #
 
 class Adventure < ActiveRecord::Base 

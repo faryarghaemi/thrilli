@@ -9,13 +9,16 @@
   
   <%= f.label :adventure_type %>
   <%= f.select(:adventure_type) do %>
-  <% [['Backpacking'], ['Scuba Diving'], ['Snowboarding/Skiing'], ['Snowmobiling'], ['Cycling'], ['Mountain Biking'], ['Fishing'], ['Hiking'], ['Kayaking'], ['Kite Surfing'], ['Dirt Biking'], ['Paintballing'], ['Camping'], ['ATVing'], ['Rafting'], ['Rappelling'], ['Rock Climbing(Indoor)'], ['Rock Climbing(Outdoor)'], ['Skydiving'], ['Slacklining'], ['Surfing'], ['Snorkling'], ['Mountaineering'], ['Sailing'], ['Motorcycle Racing(on track)'], ['Car Racing(on track)'], ['Canyoneering'], ['Cave Diving'], ['Base Jumping'], ['Water Skiing'], ['Jet Skiing'], ['Wakeboarding'], ['Outdoor sporting(ball sports)'], ['Training']].each do |c| -%>
-    <%= content_tag(:option, c.first, value: c.last) %>
+  <% @options.each do |c| -%>
+    <%= content_tag(:option, c, value: c) %>
     <% end %>
   <% end %>
 
+  <%= f.label :other, 'if other:' %>
+  <%= f.text_field :other %>
+
   <%= f.label :title %>
-  <%= f.text_field :title %>
+  <%= f.text_field :title, :required => true %>
 
   <%= f.label :pickup_location %>
   <%= f.text_field :pickup_location %>
@@ -30,7 +33,7 @@
   <%= f.text_field :checkout, :class => 'datepicker' %>
 
   <%= f.label :description %>
-  <%= f.text_field :description %>
+  <%= f.text_field :description, :required => true %>
 
   <%= f.label :seats %>
   <%= f.select(:seats) do %>
@@ -40,7 +43,7 @@
   <% end %>
 
   <%= f.label :difficulty %>
-  <%= f.select(:difficulty) do %>
+  <%= f.select(:difficulty, :required => true) do %>
   <% [['Novice'], ['Beginner'], ['Intermediate'], ['Advanced'], ['Expert']].each do |c| -%>
     <%= content_tag(:option, c.first, value: c.last) %>
     <% end %>
@@ -67,13 +70,13 @@
 
   <%= f.label :overnight %>
   <%= f.select(:overnight) do %>
-  <% [['Yes'], ['No'], ['Possibly']].each do |c| -%>
+  <% [['No'], ['Yes'], ['Possibly']].each do |c| -%>
     <%= content_tag(:option, c.first, value: c.last) %>
     <% end %>
   <% end %>
 
   <%= f.label :image %>
-  <%= f.url_field :image %>
+  <%= f.url_field :image, :required => true %>
 
   
 

@@ -1,12 +1,15 @@
 <h1>Welcome to Thrilli</h1>
 
+
 <% @adventures.each do |adventure| %>
-  <%= link_to(image_tag(adventure.image, :class => 'thumb'), adventure) %>
-
-
-
-  <p><%= adventure.user.first_name %>'s <%= link_to(adventure.title, adventure) %> Adventure</p>
   
+  <% a = adventure.bookings.where :accepted => 'yes' %>
+  <% if a.count < adventure.seats %>
+    <%= link_to(image_tag(adventure.image, :class => 'thumb'), adventure) %>
+
+    <p><%= adventure.user.first_name %>'s <%= link_to(adventure.title, adventure) %> Adventure</p>
+
+  <% end %>
 <% end %>
 
 

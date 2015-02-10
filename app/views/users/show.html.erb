@@ -6,15 +6,13 @@
 <% end %>
 
 <%= image_tag(@user.image, :class => 'thumb') %>
-  <p>Date of Birth: <%= @user.dob %></p>
-  <p>Email: <%= link_to(@user.email, mailto:@user.email) %></p>
-  <p>Phone Number: <%= @user.phone %></p>
-  <p>Gender: <%= @user.gender %></p>
-  <p>Occupation: <%= @user.occupation %></p>
-  <p>Description: <%= @user.description %></p>
-  <p>Smoker?: <%= @user.smoker %></p>
-  <p>Interests: <%= @user.interests %></p>
-  <p>Car?: <%= @user.car %></p>
-  <p>Car type: <%= @user.car_type %></p>
-  <p>Car model: <%= @user.car_model %></p>
 
+<% @user.attributes.except('image', 'created_at', 'updated_at', 'is_admin', 'password_digest', 'first_name', 'last_name', 'id').each do |k,v| %>
+  <% if v != nil && v != "" %>
+  <p>
+    <%= k.humanize %>: <%= v %>
+  </p>
+  <% end %>
+<% end %>
+
+  

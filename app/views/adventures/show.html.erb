@@ -2,26 +2,26 @@
 
 
 <%= image_tag(@adventure.image, :class => 'thumb') %>
+
+<p>
   <% if (@adventure.booking_ids & @current_user.booking_ids).empty? && (@adventure.user_id != @current_user.id) %>
-  <p><%= link_to('Request Booking', new_adventure_booking_path(:adventure_id => @adventure.id)) %></p>
+  <%= link_to('Request Booking', new_adventure_booking_path(:adventure_id => @adventure.id)) %>
   <% end %>
+</p>
 
-  <% if @current_user.id  %>
 
-  <p>Offer type: <%= @adventure.offer_type %></p>
-  <p>Adventure type: <%= @adventure.adventure_type %></p>
-  <p>Pickup location: <%= @adventure.pickup_location %></p>
-  <p>Activity location: <%= @adventure.activity_location %></p>
-  <p>Checkin: <%= @adventure.checkin %></p>
-  <p>Checkout: <%= @adventure.checkout %></p>
-  <p>Seats: <%= @adventure.seats %></p>
-  <p>Difficulty: <%= @adventure.difficulty %></p>
-  <p>Gender preference: <%= @adventure.gender_preference %></p>
-  <p>Sponsor company: <%= @adventure.sponsor_company %></p>
-  <p>Extras: <%= @adventure.extras %></p>
-  <p>Age limit: <%= @adventure.age_limit %></p>
-  <p>Duration: <%= @adventure.duration %></p>
-  <p>Overnight? <%= @adventure.overnight %></p>
-  <p>Description: <%= @adventure.description %></p>
- 
+<p>
+  <% if @current_user.id == @adventure.user.id %>
+  <%= link_to('Edit Adventure', edit_adventure_path(@adventure)) %>
+  <% end %>
+</p>
+
+<% @adventure.attributes.except('image', 'created_at', 'updated_at', 'user_id', 'disappear', 'id').each do |k,v| %>
+  <% if v != nil && v != "" %>
+  <p>
+    <%= k.humanize %>: <%= v %>
+  </p>
+  <% end %>
+<% end %>
+
 

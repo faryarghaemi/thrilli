@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   get '/pending' => 'bookings#pending'
   get '/confirmed' => 'bookings#confirmed'
   get '/cancellations' => 'bookings#cancellations'
+  get '/bookings' => 'bookings#bookings'
   get '/yes' => 'bookings#yes'
   get '/no/:booking_id' => 'bookings#no', :as => 'no'
 

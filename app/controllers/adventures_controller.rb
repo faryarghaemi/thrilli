@@ -1,13 +1,15 @@
 class AdventuresController < ApplicationController
 
   before_action :logged_in?, :only => [:new]
+  helper_method :sort_array_alphabetically 
   
   def index
     @adventures = Adventure.all
-    # @adventure = Adventure.find params[:id]
   end
 
   def new
+    @options = ['Backpacking', 'Scuba Diving', 'Snowboarding/Skiing', 'Snowmobiling', 'Cycling', 'Mountain Biking', 'Fishing', 'Hiking', 'Kayaking', 'Kite Surfing', 'Dirt Biking', 'Paintballing', 'Camping', 'ATVing', 'Rafting', 'Rappelling', 'Rock Climbing(Indoor)', 'Rock Climbing(Outdoor)', 'Skydiving', 'Slacklining', 'Surfing', 'Snorkling', 'Mountaineering', 'Sailing', 'Motorcycle Racing(on track)', 'Car Racing(on track)', 'Canyoneering', 'Cave Diving', 'Base Jumping', 'Water Skiing', 'Jet Skiing', 'Wakeboarding', 'Outdoor sporting(ball sports)', 'Training'].sort_by{ |word| word.downcase }
+    @options.unshift("Other")
     @adventure = Adventure.new 
   end
 
@@ -38,6 +40,10 @@ class AdventuresController < ApplicationController
     adventure = Adventure.find params[:id] 
     adventure.destroy
     redirect_to(adventures_path)
+  end
+
+  def sort_array_alphabetically( array_to_sort )
+
   end
 
   private 

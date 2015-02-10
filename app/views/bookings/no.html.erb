@@ -2,11 +2,11 @@
   <%= flash[:error] if flash[:error].present? %>
 </h3>
 
-Please tell <%= @booking.user.first_name %> why they can't join your adventure. 
+<h4>Please tell <%= @booking.user.first_name %> why they can't join your adventure.</h4>
 
 <%= form_for [@adventure, @booking] do |f| %>
 
-  <%= f.label :message %>
+  <%= f.label :message, :required => true %>
   <%= f.text_field :message %>
 
 <%= f.submit 'Send Message' %>

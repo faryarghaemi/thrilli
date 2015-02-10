@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150210003603) do
+ActiveRecord::Schema.define(version: 20150210062152) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -37,6 +37,8 @@ ActiveRecord::Schema.define(version: 20150210003603) do
     t.integer  "user_id"
     t.datetime "checkin"
     t.datetime "checkout"
+    t.boolean  "disappear",         default: false
+    t.string   "other"
   end
 
   create_table "bookings", force: :cascade do |t|
