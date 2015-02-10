@@ -1,4 +1,5 @@
 class BookingsController < ApplicationController
+  include ActionView::Helpers::TextHelper
 
   def new 
     @adventure = Adventure.find params[:adventure_id]
@@ -23,9 +24,17 @@ class BookingsController < ApplicationController
   def yes 
     @adventure = Adventure.find params[:adventure_id]
     @booking = @adventure.bookings.find params[:booking_id]
+
     @booking.accepted = 'yes'
-    @booking.save
-    redirect_to(adventures_mine_path(@current_user))
+
+    number = @adventure.bookings.where :accepted => 'yes'
+    if number.count < @adventure.seats
+      @booking.save
+    else
+      flash[:error] = "You have already filled up your #{ pluralize(@adventure.seats, 'seat') }."
+      redirect_to(no_path(:adventure_id => @adventure.id, :booking_id => @booking.id))
+      # redirect_to(adventures_mine_path(@current_user))
+    end
   end 
 
   def no 

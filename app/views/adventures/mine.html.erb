@@ -1,6 +1,8 @@
 <% @current_user.adventures.each do |adventure| %>
+
 <p><%= link_to('Edit Adventure', edit_adventure_path(adventure)) %>
 <%= link_to('Delete Adventure', adventure, :method => 'delete', :data => {:confirm => 'Are you sure?'}) %></p>
+
 <p><%= image_tag(adventure.image, :class => 'thumb') %></p>
 <p><%= link_to(adventure.title, adventure) %></p>
 <p><%= link_to('View Booking Requests', adventure_bookings_path(adventure)) %></p>

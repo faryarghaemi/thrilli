@@ -1,3 +1,7 @@
+<h3>
+  <%= flash[:error] if flash[:error].present? %>
+</h3>
+
 Please tell <%= @booking.user.first_name %> why they can't join your adventure. 
 
 <%= form_for [@adventure, @booking] do |f| %>
