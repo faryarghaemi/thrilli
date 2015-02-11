@@ -75,10 +75,13 @@
     <% end %>
   <% end %>
 
-  <%= f.label :image %>
-  <%= f.url_field :image, :required => true %>
+  <%= f.label :profile, 'Adventure Picture' %>
+  <%= f.file_field :profile, :required => true %>
 
-  
+  <p>
+    <%= f.label :url, 'or input URL' %>
+    <%= f.text_field :remote_profile_url %>
+  </p>
 
 
 <%= f.submit %>

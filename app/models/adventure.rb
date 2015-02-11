@@ -25,9 +25,12 @@
 #  checkout          :datetime
 #  disappear         :boolean          default("false")
 #  other             :string
+#  profile           :string
 #
 
-class Adventure < ActiveRecord::Base 
+class Adventure < ActiveRecord::Base
+  mount_uploader :profile, ProfileUploader 
+  
   belongs_to :user 
   has_many :bookings 
 end 

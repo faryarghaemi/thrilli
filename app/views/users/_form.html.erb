@@ -8,6 +8,15 @@
 
 
 <%= form_for @user do |f| %>
+  <p>
+    <%= f.label :profile, 'Profile Picture' %>
+    <%= f.file_field :profile, :required => true %>
+  </p>
+
+  <p>
+    <%= f.label :url, 'or input URL' %>
+    <%= f.text_field :remote_profile_url %>
+  </p>
 
   <p>
     <%= f.label :first_name %>

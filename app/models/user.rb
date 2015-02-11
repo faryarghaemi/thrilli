@@ -22,9 +22,12 @@
 #  created_at      :datetime
 #  updated_at      :datetime
 #  is_admin        :boolean          default("false")
+#  profile         :string
 #
 
 class User < ActiveRecord::Base 
+  mount_uploader :profile, ProfileUploader
+  
   has_secure_password
 
   has_many :adventures 

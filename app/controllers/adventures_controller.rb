@@ -36,9 +36,10 @@ class AdventuresController < ApplicationController
     redirect_to(adventure)
   end
 
-  def destroy
+  def disappear
     adventure = Adventure.find params[:id] 
-    adventure.destroy
+    adventure.disappear = true
+    adventure.save 
     redirect_to(adventures_path)
   end
 

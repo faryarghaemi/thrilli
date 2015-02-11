@@ -8,11 +8,28 @@
 
 <% c.each do |booking| %>
 
-  <p><%= image_tag(booking.adventure.user.image, :class => 'thumb') %><%= link_to(booking.adventure.user.first_name, booking.adventure.user(booking.adventure.user.id)) %>'s <%= link_to(booking.adventure.title, booking.adventure(booking.adventure.id)) %> Adventure</p>
 
-  <%= image_tag(booking.adventure.image, :class => 'thumb') %>
+
+  <%=  %>
+
+  <p><%= image_tag(booking.adventure.user.profile_url(:medium)) %><%= link_to(booking.adventure.user.first_name, booking.adventure.user(booking.adventure.user.id)) %>'s <%= link_to(booking.adventure.title, booking.adventure(booking.adventure.id)) %> Adventure</p>
+
+  
+  <%= image_tag(booking.adventure.profile_url(:medium)) %>
   <p><%= booking.adventure.user.first_name %> says: '<%= booking.message %>'</p>
-  <p>Other adventurers on the trip: <%=  %></p>
+
+  <p>
+
+  Other adventurers on the trip:   
+
+  <% booking.adventure.bookings.where(:accepted => 'yes').each do |booking_two| %>
+
+    <%= image_tag(booking_two.user.profile_url(:medium)) %>
+    <%= booking_two.user.first_name %>
+
+  <% end %>
+  
+  </p>
 <% end %>
 
 
@@ -27,7 +44,7 @@
 
   <p><%= link_to(booking.adventure.user.first_name, booking.adventure.user(booking.adventure.user.id)) %>'s <%= link_to(booking.adventure.title, booking.adventure(booking.adventure.id)) %> Adventure</p>
 
-  <%= image_tag(booking.adventure.image, :class => 'thumb') %>
+  <%= image_tag(booking.adventure.profile_url(:medium)) %>
 <% end %>
 
 
@@ -42,7 +59,7 @@
 
   <p><%= link_to(booking.adventure.user.first_name, booking.adventure.user(booking.adventure.user.id)) %>'s <%= link_to(booking.adventure.title, booking.adventure(booking.adventure.id)) %> Adventure</p>
 
-  <%= image_tag(booking.adventure.image, :class => 'thumb') %>
+  <%= image_tag(booking.adventure.profile_url(:medium)) %>
   <p><%= booking.adventure.user.first_name %> says: '<%= booking.message %>'</p>
 <% end %>
 

@@ -1,10 +1,10 @@
-<%= image_tag(@adventure.image, :class => 'thumb') %>
+<%= image_tag(@adventure.profile_url(:medium)) %>
 <h1> <%= @adventure.title %></h1>
 
 
 <% @bookings.each do |booking| %>
 
-<p><%= image_tag(booking.user.image, :class => 'thumb') %></p>
+<p><%= image_tag(booking.user.profile_url(:medium)) %></p>
 <p><%= link_to(booking.user.first_name, bookings_user_path(:adventure_id => @adventure.id, :booking_id => booking.id, :id => booking.user_id)) %> would like join your adventure.</p>
 
 

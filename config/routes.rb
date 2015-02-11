@@ -10,6 +10,7 @@ Rails.application.routes.draw do
 
 
   get '/adventures/:adventure_id/bookings/:booking_id/users/:id' => 'bookings#user', :as => 'bookings_user'
+  get 'adventures/:id/disappear' => 'adventures#disappear', :as => 'adventures_disappear'
 
   get '/pending' => 'bookings#pending'
   get '/confirmed' => 'bookings#confirmed'

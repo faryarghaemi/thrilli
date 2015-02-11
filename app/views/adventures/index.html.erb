@@ -5,7 +5,8 @@
   
   <% a = adventure.bookings.where :accepted => 'yes' %>
   <% if a.count < adventure.seats %>
-    <%= link_to(image_tag(adventure.image, :class => 'thumb'), adventure) %>
+  
+  <%= link_to(image_tag(adventure.profile_url(:medium)), adventure) %>
 
     <p><%= adventure.user.first_name %>'s <%= link_to(adventure.title, adventure) %> Adventure</p>
 
