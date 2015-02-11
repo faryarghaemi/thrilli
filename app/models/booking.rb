@@ -11,9 +11,14 @@
 #  checkout     :datetime
 #  accepted     :string
 #  message      :text
+#  latitude     :float
+#  longitude    :float
 #
 
 class Booking < ActiveRecord::Base 
   belongs_to :user 
   belongs_to :adventure 
+
+  # geocoded_by :pickup_location, :activity_location 
+  # after_validation :geocode
 end 

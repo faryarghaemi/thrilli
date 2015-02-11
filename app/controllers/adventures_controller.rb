@@ -4,7 +4,11 @@ class AdventuresController < ApplicationController
   helper_method :sort_array_alphabetically 
   
   def index
-    @adventures = Adventure.all
+      if params[:search]
+        @adventures = Adventure.search(params[:search]).order("created_at DESC")
+      else
+        @adventures = Adventure.all.order('created_at DESC')
+      end
   end
 
   def new
@@ -27,6 +31,8 @@ class AdventuresController < ApplicationController
   end 
 
   def edit
+    @options = ['Backpacking', 'Scuba Diving', 'Snowboarding/Skiing', 'Snowmobiling', 'Cycling', 'Mountain Biking', 'Fishing', 'Hiking', 'Kayaking', 'Kite Surfing', 'Dirt Biking', 'Paintballing', 'Camping', 'ATVing', 'Rafting', 'Rappelling', 'Rock Climbing(Indoor)', 'Rock Climbing(Outdoor)', 'Skydiving', 'Slacklining', 'Surfing', 'Snorkling', 'Mountaineering', 'Sailing', 'Motorcycle Racing(on track)', 'Car Racing(on track)', 'Canyoneering', 'Cave Diving', 'Base Jumping', 'Water Skiing', 'Jet Skiing', 'Wakeboarding', 'Outdoor sporting(ball sports)', 'Training'].sort_by{ |word| word.downcase }
+    @options.unshift("Other")
     @adventure = Adventure.find params[:id]
   end
 
@@ -50,6 +56,6 @@ class AdventuresController < ApplicationController
   private 
 
   def adventure_params
-    params.require(:adventure).permit(:offer_type, :adventure_type, :image, :pickup_location, :activity_location, :availability, :description, :seats, :difficulty, :gender_preference, :sponsor_company, :extras, :age_limit, :duration, :overnight, :title, :creator_id, bookings_attributes: [:adventure_id, :user_id])
+    params.require(:adventure).permit(:offer_type, :adventure_type, :image, :pickup_location, :activity_location, :availability, :description, :seats, :difficulty, :gender_preference, :sponsor_company, :extras, :age_limit, :duration, :latitude, :longitude, :overnight, :title, :creator_id, bookings_attributes: [:adventure_id, :user_id])
   end 
 end

@@ -21,10 +21,10 @@
   <%= f.text_field :title, :required => true %>
 
   <%= f.label :pickup_location %>
-  <%= f.text_field :pickup_location %>
+  <%= f.text_field :pickup_location, :required => true %>
 
   <%= f.label :activity_location %>
-  <%= f.text_field :activity_location %>
+  <%= f.text_field :activity_location, :required => true %>
 
   <%= f.label :checkin %>
   <%= f.text_field :checkin, :class => 'datepicker' %>

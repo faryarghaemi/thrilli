@@ -1,5 +1,6 @@
 class BookingsController < ApplicationController
   include ActionView::Helpers::TextHelper
+ 
 
   def new 
     @adventure = Adventure.find params[:adventure_id]
@@ -94,7 +95,7 @@ class BookingsController < ApplicationController
   private 
 
   def booking_params 
-    params.require(:booking).permit(:user_id, :adventure_id, :availability, :checkin, :checkout, :profile, :remote_profile_url)
+    params.require(:booking).permit(:user_id, :adventure_id,:latitude, :longitude, :availability, :checkin, :checkout, :profile, :remote_profile_url)
   end
 
 end 

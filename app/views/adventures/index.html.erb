@@ -1,5 +1,13 @@
 <h1>Welcome to Thrilli</h1>
 
+<% if @adventures.count == 0 %>
+<%= flash[:error] = "Your search did not match any results. Please try again. " %>
+<% end %>
+
+<%= form_tag(adventures_path, :method => "get", id: "search-form") do %>
+  <%= text_field_tag :search, params[:search], placeholder: "Search Keywords" %>
+  <%= submit_tag "Search", :name => nil %>
+<% end %>
 
 <% @adventures.each do |adventure| %>
   
@@ -12,6 +20,7 @@
 
   <% end %>
 <% end %>
+
 
 
 

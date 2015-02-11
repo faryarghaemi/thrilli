@@ -26,11 +26,20 @@
 #  disappear         :boolean          default("false")
 #  other             :string
 #  profile           :string
+#  latitude          :float
+#  longitude         :float
 #
 
 class Adventure < ActiveRecord::Base
+  def self.search(query)
+    where("adventure_type ilike ? OR title ilike ?", "%#{query}%", "%#{query}%") 
+  end
+
   mount_uploader :profile, ProfileUploader 
   
   belongs_to :user 
   has_many :bookings 
+
+  # geocoded_by :pickup_location, :activity_location 
+  # after_validation :geocode
 end 
