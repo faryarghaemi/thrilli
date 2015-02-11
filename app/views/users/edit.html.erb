@@ -1,5 +1,7 @@
 <h1>Edit Profile</h1>
 
+<%= image_tag(@user.profile_url(:medium)) %>
+
 <%= form_for @user do |f| %>
 
   <p>
@@ -79,7 +81,7 @@
 
   <p> 
     <%= f.label :profile, 'Profile Picture' %>
-    <%= f.file_field :profile, :required => true %> 
+    <%= f.file_field :profile %> 
   </p> 
 
   <p>

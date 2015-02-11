@@ -13,12 +13,15 @@
 #  message      :text
 #  latitude     :float
 #  longitude    :float
+#  lat          :float
+#  lon          :float
 #
 
-class Booking < ActiveRecord::Base 
+class Booking < ActiveRecord::Base
   belongs_to :user 
   belongs_to :adventure 
 
-  # geocoded_by :pickup_location, :activity_location 
-  # after_validation :geocode
+  geocoded_by :activity_location 
+  geocoded_by :pickup_location, :lat => :latitude, :lon => :longitude
+  after_validation :geocode
 end 

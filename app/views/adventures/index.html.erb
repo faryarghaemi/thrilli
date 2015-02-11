@@ -11,13 +11,21 @@
 
 <% @adventures.each do |adventure| %>
   
-  <% a = adventure.bookings.where :accepted => 'yes' %>
-  <% if a.count < adventure.seats %>
+  <% accepted = adventure.bookings.where :accepted => 'yes' %>
+  <% if accepted.count < adventure.seats %>
   
-  <%= link_to(image_tag(adventure.profile_url(:medium)), adventure) %>
+  <div class="<%= ("disappear" if adventure.disappear?) %> tbd"><%= link_to(image_tag(adventure.profile_url(:medium)), adventure) %>
 
-    <p><%= adventure.user.first_name %>'s <%= link_to(adventure.title, adventure) %> Adventure</p>
+  <%= adventure.user.first_name %>'s <%= link_to(adventure.title, adventure) %> Adventure</div>
 
+  <% else %>
+    FULL
+    
+  <div class="<%= ("disappear" if adventure.disappear?) %> tbd"><%= link_to(image_tag(adventure.profile_url(:medium)), adventure) %>
+
+  <%= adventure.user.first_name %>'s <%= link_to(adventure.title, adventure) %> Adventure</div>
+
+  
   <% end %>
 <% end %>
 

@@ -1,24 +1,41 @@
 <% @current_user.adventures.each do |adventure| %>
 
+  <div class="<%= ("disappear" if adventure.disappear?) %> tbd">
 
-  <% a = adventure.bookings.where :accepted => 'yes' %>
-  <% if a.count < adventure.seats %>
-    <p><%= link_to('Edit Adventure', edit_adventure_path(adventure)) %>
-    <%= link_to('Delete Adventure', adventures_disappear_path(:id => adventure.id), :data => {:confirm => 'Are you sure?'}) %></p>
+    <% accepted = adventure.bookings.where :accepted => 'yes' %>
 
-    <p><%= image_tag(adventure.profile_url(:medium)) %></p>
-     
+    <% if accepted.count < adventure.seats %>
 
-    <p><%= link_to(adventure.title, adventure) %></p>
-    <p><%= link_to('View Booking Requests', adventure_bookings_path(adventure)) %></p>
-  <% else %>
-    <p>
-      <%= image_tag(adventure.profile_url(:medium)) %>
-    </p>
-    <p>
-      <%= link_to(adventure.title, adventure) %> (FULL)</p>
-    <p>
-      <%= link_to('View Booking Requests', adventure_bookings_path(adventure)) %>
-    </p>
-  <% end %>
+      <p>
+        <%= link_to('Edit Adventure', edit_adventure_path(adventure)) %> |
+        <%= link_to('Delete Adventure', adventures_disappear_path(:id => adventure.id), :data => {:confirm => 'Are you sure?'}) %>
+      </p>
+
+      <p>
+        <%= image_tag(adventure.profile_url(:medium)) %>
+      </p>
+       
+
+      <p>
+        <%= link_to(adventure.title, adventure) %>
+      </p>
+
+      <p>
+        <%= link_to('View Booking Requests', adventure_bookings_path(adventure)) %>
+      </p>
+
+    <% else %>
+
+      <p>
+        <%= image_tag(adventure.profile_url(:medium)) %>
+      </p>
+      <p>
+        <%= link_to(adventure.title, adventure) %> (FULL)
+      </p>
+      <p>
+        <%= link_to('View Booking Requests', adventure_bookings_path(adventure)) %>
+      </p>
+    <% end %>
+
+  </div>
 <% end %>

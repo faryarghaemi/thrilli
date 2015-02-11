@@ -12,11 +12,11 @@
 
 <p>
   <% if @current_user.id == @adventure.user.id %>
-  <%= link_to('Edit Adventure', edit_adventure_path(@adventure)) %>
+  <%= link_to('Edit Adventure', edit_adventure_path(@adventure)) %> | <%= link_to('Delete Adventure', adventures_disappear_path(:id => @adventure.id), :data => {:confirm => 'Are you sure?'}) %>
   <% end %>
 </p>
 
-<% @adventure.attributes.except('image', 'created_at', 'updated_at', 'user_id', 'disappear', 'id').each do |k,v| %>
+<% @adventure.attributes.except('image', 'created_at', 'updated_at', 'user_id', 'disappear', 'id', 'latitude', 'longitude', 'profile').each do |k,v| %>
   <% if v != nil && v != "" %>
   <p>
     <%= k.humanize %>: <%= v %>
@@ -24,6 +24,74 @@
   <% end %>
 <% end %>
 
+  <div id="mapcanvas" style="width:500px;  height:500px; top:30px;"></div>
+
+  <div id="directionPanel" style="width:300px;  position:absolute; margin-left:550px; top:30px;"></div>
+
+<script>      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(success, error);
+      } else {
+        error('not supported');
+      }
+      var geocoder = new google.maps.Geocoder();
+      var directionDisplay;
+      var directionsService = new google.maps.DirectionsService();
+      var map;
+
+      function success(position) {
+        directionsDisplay = new google.maps.DirectionsRenderer();
+        var latlng = new google.maps.LatLng(-33.869860, 151.206194);
+        var mapOptions = {
+          zoom:15,
+          mapTypeId: google.maps.MapTypeId.ROADMAP,
+          center: latlng
+        }
+        
+        map = new google.maps.Map(document.getElementById('mapcanvas'), mapOptions);
+        directionsDisplay.setMap(map);
+        directionsDisplay.setPanel(document.getElementById("directionPanel"));
 
 
+        var start = position.coords.latitude + ',' + position.coords.longitude;
+        var end = <%= @adventure.latitude %> + ',' + <%= @adventure.longitude %>
+        var mode;
 
+        switch ( 'driving' )
+        {
+          case 'bicycling' :
+            mode = google.maps.DirectionsTravelMode.BICYCLING;
+            break;
+          case 'driving':
+            mode = google.maps.DirectionsTravelMode.DRIVING;
+            break;
+          case 'walking':
+            mode = google.maps.DirectionsTravelMode.WALKING;
+            break;
+        }
+        var request = {
+            origin:start,
+            destination:end,
+            travelMode: mode
+        };
+        
+        directionsService.route(request, function(response, status) {
+          if (status == google.maps.DirectionsStatus.OK) {
+            directionsDisplay.setDirections(response);
+          } else {
+            console.log(response);
+          }
+        });
+
+      }
+
+      function error(msg) {
+        var s = document.querySelector('#status');
+        s.innerHTML = typeof msg == 'string' ? msg : "failed";
+        s.className = 'fail';
+  
+        console.log(arguments);
+       }
+
+    </script>
+
+  

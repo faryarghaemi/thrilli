@@ -37,7 +37,7 @@
 
   <%= f.label :seats %>
   <%= f.select(:seats) do %>
-  <% [['0', 0], ['1', 1], ['2', 2], ['3', 3], ['4', 4], ['5', 5], ['6', 6], ['7', 7], ['8', 8], ['9', 9], ['10+', '10+']].each do |c| -%>
+  <% [['1', 1], ['0', 0], ['2', 2], ['3', 3], ['4', 4], ['5', 5], ['6', 6], ['7', 7], ['8', 8], ['9', 9], ['10+', '10+']].each do |c| -%>
     <%= content_tag(:option, c.first, value: c.last) %>
     <% end %>
   <% end %>
@@ -76,7 +76,7 @@
   <% end %>
 
   <%= f.label :profile, 'Adventure Picture' %>
-  <%= f.file_field :profile, :required => true %>
+  <%= f.file_field :profile %>
 
   <p>
     <%= f.label :url, 'or input URL' %>
@@ -93,3 +93,4 @@
     $('.datepicker').datepicker();
   });
 </script>
+

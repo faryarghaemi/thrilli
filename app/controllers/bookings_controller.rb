@@ -1,7 +1,8 @@
 class BookingsController < ApplicationController
   include ActionView::Helpers::TextHelper
+  before_action :deleted? 
  
-
+  
   def new 
     @adventure = Adventure.find params[:adventure_id]
     @booking = @adventure.bookings.new 
@@ -55,6 +56,21 @@ class BookingsController < ApplicationController
   def show
     @adventure = Adventure.find params[:adventure_id]
     @booking = @adventure.bookings.find params[:id]
+
+    # m = Mandrill::API.new
+    #   message = {  
+    #   :subject=> "Thrilli-Requested Booking",  
+    #   :from_name=> "Thrilli",  
+    #   :text=>"Hi <strong>#{@current_user.first_name}</strong>, thanks for requesting a booking!",  
+    #   :to=>[  
+    #   {  
+    #   :email=> @current_user.email,  
+    #   :name=> @current_user.first_name  
+    #   }  
+    #   ],   
+    #   :from_email=>"adventure@funtimes.com"  
+    #   }  
+    #   sending = m.messages.send message 
   end 
 
   # def destroy 
@@ -95,7 +111,7 @@ class BookingsController < ApplicationController
   private 
 
   def booking_params 
-    params.require(:booking).permit(:user_id, :adventure_id,:latitude, :longitude, :availability, :checkin, :checkout, :profile, :remote_profile_url)
+    params.require(:booking).permit(:user_id, :adventure_id,:latitude, :longitude, :lat, :lon, :availability, :checkin, :checkout, :profile, :remote_profile_url)
   end
 
 end 

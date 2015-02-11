@@ -8,6 +8,7 @@ Rails.application.routes.draw do
     resources :bookings 
   end 
 
+  get '/adventures/:id/maps' => 'adventures#maps', :as => 'adventures_maps'
 
   get '/adventures/:adventure_id/bookings/:booking_id/users/:id' => 'bookings#user', :as => 'bookings_user'
   get 'adventures/:id/disappear' => 'adventures#disappear', :as => 'adventures_disappear'

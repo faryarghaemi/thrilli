@@ -1,4 +1,6 @@
 class SessionController < ApplicationController
+  before_action :deleted? 
+  
   def new
   end
 

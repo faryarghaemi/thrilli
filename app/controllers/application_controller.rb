@@ -18,4 +18,20 @@ class ApplicationController < ActionController::Base
     flash[:error] = "You must be logged in to do that" unless @current_user.present? 
   end 
 
+  def deleted? 
+    adventure = Adventure.where :disappear => true 
+  end 
 end
+
+
+
+
+
+
+
+
+
+
+
+
+

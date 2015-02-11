@@ -32,6 +32,9 @@ gem 'bcrypt', '~> 3.1.7'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
+gem 'dotenv-rails', :groups => [:development, :test]
+gem 'mandrill-api'
+gem 'underscore-rails'
 gem 'gmaps4rails'
 gem 'carrierwave'
 gem 'rails_12factor', :group => :production 

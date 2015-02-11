@@ -28,6 +28,8 @@
 #  profile           :string
 #  latitude          :float
 #  longitude         :float
+#  lat               :float
+#  lon               :float
 #
 
 class Adventure < ActiveRecord::Base
@@ -40,6 +42,7 @@ class Adventure < ActiveRecord::Base
   belongs_to :user 
   has_many :bookings 
 
-  # geocoded_by :pickup_location, :activity_location 
-  # after_validation :geocode
+  geocoded_by :pickup_location, :lat => :latitude, :lon => :longitude
+  geocoded_by :activity_location
+  after_validation :geocode
 end 
