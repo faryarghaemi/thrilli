@@ -16,5 +16,6 @@
 //= require bootstrap-datepicker
 //= require bootstrap-sprockets
 //= require underscore
+//= require bootstrap/modal
 //= require gmaps/google
 //= require_tree .

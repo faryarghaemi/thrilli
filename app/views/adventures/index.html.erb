@@ -1,14 +1,6 @@
-<h1>Welcome to Thrilli</h1>
-
 
 <% if @adventures.count == 0 %>
 <%= flash[:error] = "Your search did not match any results. Please try again. " %>
-<% end %>
-
-<!-- search function  -->
-<%= form_tag(adventures_path, :method => "get", id: "search-form") do %>
-  <%= text_field_tag :search, params[:search], placeholder: "Search Keywords" %>
-  <%= submit_tag "Search", :name => nil %>
 <% end %>
 
 <!-- all adventures (with available car seats and not deleted) -->
@@ -17,7 +9,7 @@
   <% accepted = adventure.bookings.where :accepted => 'yes' %>
   <% if accepted.count < adventure.seats %>
   
-  <div class="<%= ("disappear" if adventure.disappear?) %> tbd"><%= link_to(image_tag(adventure.profile_url(:medium)), adventure) %>
+  <div class="<%= ("disappear" if adventure.disappear?) %> tbd"><%= link_to(image_tag(adventure.profile_url(:medium), :class => "img-rounded"), adventure) %>
 
   <%= adventure.user.first_name %>'s <%= link_to(adventure.title, adventure) %> Adventure
     <p><% if adventure.checkin != nil%>
@@ -30,7 +22,7 @@
   <!-- adventures that are full  -->
     FULL
     
-  <div class="<%= ("disappear" if adventure.disappear?) %> tbd"><%= link_to(image_tag(adventure.profile_url(:medium)), adventure) %>
+  <div class="<%= ("disappear" if adventure.disappear?) %> tbd"><%= link_to(image_tag(adventure.profile_url(:medium), :class => "img-rounded"), adventure) %>
 
   <%= adventure.user.first_name %>'s <%= link_to(adventure.title, adventure) %> Adventure</div>
 
