@@ -20,17 +20,20 @@
   <%= f.label :title %>
   <%= f.text_field :title, :required => true %>
 
-  <%= f.label :pickup_location %>
+  <%= f.label :pickup_location, "Pickup Address" %>
   <%= f.text_field :pickup_location, :required => true %>
 
-  <%= f.label :activity_location %>
+  <%= f.label :city_pickup, "Pickup City" %>
+  <%= f.text_field :city_pickup, :required => true %>
+
+  <%= f.label :activity_location, "Activity Address" %>
   <%= f.text_field :activity_location, :required => true %>
 
-  <%= f.label :checkin %>
-  <%= f.text_field :checkin, :class => 'datepicker' %>
+  <%= f.label :city_activity, "Activity City" %>
+  <%= f.text_field :city_activity, :required => true %>
 
-  <%= f.label :checkout %>
-  <%= f.text_field :checkout, :class => 'datepicker' %>
+  <%= f.label :checkin, 'Adventure Date' %>
+  <%= f.text_field :checkin, :class => 'datepicker', :required => true %>
 
   <%= f.label :description %>
   <%= f.text_field :description, :required => true %>
@@ -90,7 +93,9 @@
 
 <script type="text/javascript">
   $(document).ready(function(){
-    $('.datepicker').datepicker();
+    $('.datepicker').datepicker({
+      format: 'yyyy-mm-dd'
+    });
   });
 </script>
 

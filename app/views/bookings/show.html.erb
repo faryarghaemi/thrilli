@@ -1,42 +1,86 @@
 <h1>Booking Details</h1>
+(You should recieve an email shortly)
 
 <p><%= image_tag(@adventure.profile_url(:medium)) %></p>
 <p><%= @adventure.title %></p>
 
-
-<p>Your availabilities: <%= @booking.checkin.strftime('%A, %b %e, %Y') %> through
-<%= @booking.checkout.strftime('%A, %b %e, %Y')%></p>
-
-<% if @adventure.adventure_type != nil && @adventure.adventure_type != "" %>
-  <p>Adventure type: <%= @adventure.adventure_type %></p>
-<% end  %>
-
-<% if @adventure.pickup_location != nil && @adventure.pickup_location != "" %>
-  <p>Pickup location: <%= @adventure.pickup_location %></p>
+<% if @adventure.checkin != nil%>
+  <%= @adventure.checkin.strftime('%A, %b %e, %Y') %>
 <% end %>
-<% if @adventure.activity_location != nil && @adventure.activity_location != "" %>
-  <p>Activity location: <%= @adventure.activity_location %></p>
-<% end %>
-<% if @adventure.difficulty != nil && @adventure.difficulty != "" %>
-  <p>Difficulty: <%= @adventure.difficulty %></p>
-<% end %>
-<% if @adventure.sponsor_company != nil && @adventure.sponsor_company != "" %>
-  <p>Sponsor company: <%= @adventure.sponsor_company %></p>
-<% end %>
-<% if @adventure.extras != nil && @adventure.extras != "" %>
-  <p>Extras: <%= @adventure.extras %></p>
-<% end %>
-<% if @adventure.duration != nil && @adventure.duration != "" %>
-  <p>Duration: <%= @adventure.duration %></p>
-<% end %>
-<% if @adventure.overnight != nil && @adventure.overnight != "" %>
-  <p>Overnight? <%= @adventure.overnight %></p>
-<% end %>
-
-<% if @adventure.description != nil && @adventure.description != "" %>
-  <p>Description: <%= @adventure.description %></p>
+<% @adventure.attributes.except('image', 'created_at', 'updated_at', 'user_id', 'disappear', 'id', 'latitude', 'longitude', 'profile', 'lat', 'lon', 'pickup_location', 'activity_location', 'city_pickup', 'city_activity', 'checkin', 'checkout', 'title', 'seats').each do |k,v| %>
+  <% if v != nil && v != "" %>
+  <p>
+    <%= k.humanize %>: <%= v %>
+  </p>
+  <% end %>
 <% end %>
 
 
+  <div id="mapcanvas" style="width:500px;  height:500px; top:30px;"></div>
 
+  <div id="directionPanel" style="width:300px;  position:absolute; margin-left:550px; top:30px;"></div>
 
+<script>      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(success, error);
+      } else {
+        error('not supported');
+      }
+      var geocoder = new google.maps.Geocoder();
+      var directionDisplay;
+      var directionsService = new google.maps.DirectionsService();
+      var map;
+
+      function success(position) {
+        directionsDisplay = new google.maps.DirectionsRenderer();
+        var latlng = new google.maps.LatLng(-33.869860, 151.206194);
+        var mapOptions = {
+          zoom:15,
+          mapTypeId: google.maps.MapTypeId.ROADMAP,
+          center: latlng
+        }
+        
+        map = new google.maps.Map(document.getElementById('mapcanvas'), mapOptions);
+        directionsDisplay.setMap(map);
+        directionsDisplay.setPanel(document.getElementById("directionPanel"));
+
+        var start = <%= @adventure.lat %> + ',' + <%= @adventure.lon %>;
+        var end = <%= @adventure.latitude %> + ',' + <%= @adventure.longitude %>
+        var mode;
+
+        switch ( 'driving' )
+        {
+          case 'bicycling' :
+            mode = google.maps.DirectionsTravelMode.BICYCLING;
+            break;
+          case 'driving':
+            mode = google.maps.DirectionsTravelMode.DRIVING;
+            break;
+          case 'walking':
+            mode = google.maps.DirectionsTravelMode.WALKING;
+            break;
+        }
+        var request = {
+            origin:start,
+            destination:end,
+            travelMode: mode
+        };
+        
+        directionsService.route(request, function(response, status) {
+          if (status == google.maps.DirectionsStatus.OK) {
+            directionsDisplay.setDirections(response);
+          } else {
+            console.log(response);
+          }
+        });
+
+      }
+
+      function error(msg) {
+        var s = document.querySelector('#status');
+        s.innerHTML = typeof msg == 'string' ? msg : "failed";
+        s.className = 'fail';
+  
+        console.log(arguments);
+       }
+
+    </script>

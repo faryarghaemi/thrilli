@@ -15,14 +15,18 @@
   <%= link_to('Edit Adventure', edit_adventure_path(@adventure)) %> | <%= link_to('Delete Adventure', adventures_disappear_path(:id => @adventure.id), :data => {:confirm => 'Are you sure?'}) %>
   <% end %>
 </p>
-
-<% @adventure.attributes.except('image', 'created_at', 'updated_at', 'user_id', 'disappear', 'id', 'latitude', 'longitude', 'profile').each do |k,v| %>
+<% if @adventure.checkin != nil%>
+  <%= @adventure.checkin.strftime('%A, %b %e, %Y') %>
+<% end %>
+<% @adventure.attributes.except('image', 'created_at', 'updated_at', 'user_id', 'disappear', 'id', 'latitude', 'longitude', 'profile', 'lat', 'lon', 'pickup_location', 'activity_location', 'city_pickup', 'city_activity', 'checkin', 'checkout', 'title', 'seats').each do |k,v| %>
   <% if v != nil && v != "" %>
   <p>
     <%= k.humanize %>: <%= v %>
   </p>
   <% end %>
 <% end %>
+
+
 
   <div id="mapcanvas" style="width:500px;  height:500px; top:30px;"></div>
 
@@ -51,8 +55,7 @@
         directionsDisplay.setMap(map);
         directionsDisplay.setPanel(document.getElementById("directionPanel"));
 
-
-        var start = position.coords.latitude + ',' + position.coords.longitude;
+        var start = <%= @adventure.lat %> + ',' + <%= @adventure.lon %>;
         var end = <%= @adventure.latitude %> + ',' + <%= @adventure.longitude %>
         var mode;
 

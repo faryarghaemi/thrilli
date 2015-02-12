@@ -1,12 +1,12 @@
 
 
-<% c = @bookings.where(:accepted => 'yes') %>
+<% confirmed = @bookings.where(:accepted => 'yes') %>
 
-<% if c.count > 0 %>
+<% if confirmed.count > 0 %>
   <h1>Confirmed Bookings</h1>
 <% end %>
 
-<% c.each do |booking| %>
+<% confirmed.each do |booking| %>
 
 
 
@@ -16,7 +16,7 @@
 
   
   <%= image_tag(booking.adventure.profile_url(:medium)) %>
-  <p><%= booking.adventure.user.first_name %> says: '<%= booking.message %>'</p>
+  <p><%= booking.adventure.user.first_name %> says: '<%= booking.message_decision %>'</p>
 
   <p>
 
@@ -34,13 +34,13 @@
 
 
 
-<% p = @bookings.where(:accepted => nil ) %>
+<% pending = @bookings.where(:accepted => nil ) %>
 
-<% if p.count > 0 %>
+<% if pending.count > 0 %>
   <h1>Pending Bookings</h1>
 <% end %>
 
-<% p.each do |booking| %>
+<% pending.each do |booking| %>
 
   <p><%= link_to(booking.adventure.user.first_name, booking.adventure.user(booking.adventure.user.id)) %>'s <%= link_to(booking.adventure.title, booking.adventure(booking.adventure.id)) %> Adventure</p>
 
@@ -48,18 +48,17 @@
 <% end %>
 
 
+<% cancellations = @bookings.where(:accepted => 'no' ) %>
 
-<% x = @bookings.where(:accepted => 'no' ) %>
-
-<% if x.count > 0 %>
+<% if cancellations.count > 0 %>
   <h1>Cancellations</h1>
 <% end %>
 
-<% x.each do |booking| %>
+<% cancellations.each do |booking| %>
 
   <p><%= link_to(booking.adventure.user.first_name, booking.adventure.user(booking.adventure.user.id)) %>'s <%= link_to(booking.adventure.title, booking.adventure(booking.adventure.id)) %> Adventure</p>
 
   <%= image_tag(booking.adventure.profile_url(:medium)) %>
-  <p><%= booking.adventure.user.first_name %> says: '<%= booking.message %>'</p>
+  <p><%= booking.adventure.user.first_name %> says: '<%= booking.message_decision %>'</p>
 <% end %>
 

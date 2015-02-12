@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   before_action :deleted? 
   before_action :check_if_admin, :only => [:index] 
+  require 'mandrill'
 
   def index
     @users = User.all 
@@ -18,6 +19,22 @@ class UsersController < ApplicationController
     @user = User.new user_params
     if @user.save
       session[:user_id] = @user.id
+
+      m = Mandrill::API.new
+      message = {  
+      :subject=> "Thrilli",  
+      :from_name=> "Thrilli",  
+      :text=>"Hi #{@user.first_name}, 
+        Thanks for signing up with Thrilli!",  
+      :to=>[  
+      {  
+      :email=> @user.email,  
+      :name=> @user.first_name  
+      }  
+      ],    
+      :from_email=>"adventure@funtimes.com"  
+      }  
+      sending = m.messages.send message  
       redirect_to(root_path)
     else 
       render :new

@@ -2,12 +2,12 @@
 
 
   <h2>Booking Info:</h2>
-  <%= @booking.user.first_name %> can join you <%= @booking.checkin.strftime('%A, %b %e, %Y') %> through <%= @booking.checkout.strftime('%A, %b %e, %Y') %>.
 
   <p><%= link_to('Accept', yes_path(:adventure_id => @adventure.id, :booking_id => @booking.id)) %> or  <%= link_to('Reject', no_path(:adventure_id => @adventure.id, :booking_id => @booking.id)) %></p>
 
 
   <h3> <%= @booking.user.first_name %></h3>
+  '<%= @booking.message %>'
 
   <% if @booking.user.dob != nil && @booking.user.dob != "" %>
     <p>Date of Birth: <%= @booking.user.dob %></p>

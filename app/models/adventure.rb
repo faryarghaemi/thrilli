@@ -30,11 +30,13 @@
 #  longitude         :float
 #  lat               :float
 #  lon               :float
+#  city_pickup       :text
+#  city_activity     :text
 #
 
 class Adventure < ActiveRecord::Base
   def self.search(query)
-    where("adventure_type ilike ? OR title ilike ?", "%#{query}%", "%#{query}%") 
+    where("adventure_type ilike ? OR title ilike ? AND checkin > now()", "%#{query}%", "%#{query}%") 
   end
 
   mount_uploader :profile, ProfileUploader 
@@ -42,7 +44,39 @@ class Adventure < ActiveRecord::Base
   belongs_to :user 
   has_many :bookings 
 
-  geocoded_by :pickup_location, :lat => :latitude, :lon => :longitude
-  geocoded_by :activity_location
-  after_validation :geocode
+  # geocoded_by :pickup_location, :latitude => :lat, :longitude => :lon 
+  # geocoded_by :activity_location
+  after_validation :custom_geocode
+
+  private 
+  def custom_geocode 
+    start = Geocoder.coordinates(pickup_location + city_pickup)
+    stop = Geocoder.coordinates(activity_location + city_activity)
+
+    if start.present? && stop.present? 
+      self.latitude = start.first 
+      self.longitude = start.last
+      self.lat = stop.first 
+      self.lon = stop.last
+    end 
+  end 
+
+
 end 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

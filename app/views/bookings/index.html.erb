@@ -5,7 +5,8 @@
 <% @bookings.each do |booking| %>
 
 <p><%= image_tag(booking.user.profile_url(:medium)) %></p>
-<p><%= link_to(booking.user.first_name, bookings_user_path(:adventure_id => @adventure.id, :booking_id => booking.id, :id => booking.user_id)) %> would like join your adventure.</p>
+<p><%= link_to(booking.user.first_name, bookings_user_path(:adventure_id => @adventure.id, :booking_id => booking.id, :id => booking.user_id)) %> would like to join your adventure.</p>
+<p><%= booking.message %></p>
 
 
 <% end %>

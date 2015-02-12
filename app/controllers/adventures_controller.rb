@@ -1,4 +1,5 @@
 class AdventuresController < ApplicationController
+  include ActionView::Helpers::TextHelper
   require 'mandrill'
 
   before_action :deleted? 
@@ -27,7 +28,10 @@ class AdventuresController < ApplicationController
       message = {  
       :subject=> "Thrilli",  
       :from_name=> "Thrilli",  
-      :text=>"Hi <strong>#{@current_user.first_name}</strong>, thanks for creating an adventure!",  
+      :text=>"Hi #{@current_user.first_name},
+      Thanks for creating an adventure!
+      Best, 
+      Thrilli",  
       :to=>[  
       {  
       :email=> @current_user.email,  
@@ -80,6 +84,6 @@ class AdventuresController < ApplicationController
   private 
 
   def adventure_params
-    params.require(:adventure).permit(:offer_type, :adventure_type, :image, :pickup_location, :activity_location, :availability, :description, :seats, :difficulty, :gender_preference, :sponsor_company, :extras, :profile, :age_limit, :duration, :latitude, :longitude, :lat, :lon, :overnight, :title, :creator_id, bookings_attributes: [:adventure_id, :user_id])
+    params.require(:adventure).permit(:offer_type, :adventure_type, :image, :pickup_location, :activity_location, :availability, :description, :seats, :difficulty, :gender_preference, :sponsor_company, :extras, :profile, :age_limit, :duration, :checkin, :checkout, :latitude, :longitude, :lat, :city_pickup, :remote_profile_url, :city_activity, :lon, :overnight, :title, :creator_id, bookings_attributes: [:adventure_id, :user_id])
   end 
 end
