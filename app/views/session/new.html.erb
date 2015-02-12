@@ -1,5 +1,4 @@
-<!-- 
- <img src="http://thefreshexchangeblog.com/assets/a_new_adventure1.jpg" class="backgroundimage"> -->
+
 
  <div class="modal fade">
   <div class="modal-dialog modal-sm">
@@ -12,11 +11,12 @@
         <%= form_tag login_path do %>
           <%= text_field_tag :email, nil, :autofocus => true, :placeholder => 'Email', :class => 'form-control' %>
           <%= password_field_tag :password, nil,:class => 'form-control', :placeholder => 'Password' %>
+          <%= submit_tag 'Go!', :class => "btn btn-primary" %>
+        <% end %>
       </div>
       <div class="modal-footer">
       <%= flash[:error] if flash[:error].present? %>
-      <%= submit_tag 'Go!', :class => "btn btn-primary" %>
-        <% end %>
+      
       </div>
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->

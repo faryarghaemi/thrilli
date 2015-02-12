@@ -8,13 +8,14 @@
   
   <% accepted = adventure.bookings.where :accepted => 'yes' %>
   <% if accepted.count < adventure.seats %>
-  
-  <div class="<%= ("disappear" if adventure.disappear?) %> tbd"><%= link_to(image_tag(adventure.profile_url(:medium), :class => "img-rounded"), adventure) %>
+<div class="col-md-4">
+  <div class="<%= ("disappear" if adventure.disappear?) %> tbd"><%= link_to(image_tag(adventure.profile_url(:large), :class => "img-rounded"), adventure) %>
 
   <%= adventure.user.first_name %>'s <%= link_to(adventure.title, adventure) %> Adventure
     <p><% if adventure.checkin != nil%>
       <%= adventure.checkin.strftime('%A, %b %e, %Y') %></p>
     <% end %>
+  </div>
   </div>
 
   <% else %>

@@ -1,54 +1,40 @@
-<% if @user.errors.any? %>
-<ol>
-  <% @user.errors.full_messages.each do |msg| %>
-  <li><%= msg %></li>
-<% end %>
-</ol>
-<% end %>
 
 
+ <div class="modal fade">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Sign up</h4>
+      </div>
+      <div class="modal-body">
 <%= form_for @user do |f| %>
-  <p>
-    <%= f.label :profile, 'Profile Picture' %>
-    <%= f.file_field :profile %>
-  </p>
+<%= f.file_field :profile, :placeholder => 'Profile Picture', :class => 'form-control' %>
+<%= f.text_field :remote_profile_url, :placeholder => 'or input URL (profile pic)', :class => 'form-control' %>
+<%= f.text_field :first_name, :autofocus => true, :required => true, :placeholder => 'First name', :class => 'form-control' %>
+<%= f.text_field :last_name, :required => true, :placeholder => 'Last name', :class => 'form-control' %>
 
-  <p>
-    <%= f.label :url, 'or input URL' %>
-    <%= f.text_field :remote_profile_url %>
-  </p>
+<%= f.text_field :email, :required => true, :placeholder => 'Email', :class => 'form-control' %>
+<%= f.password_field :password, :class => 'form-control', :placeholder => 'Password' %>
 
-  <p>
-    <%= f.label :first_name %>
-    <%= f.text_field :first_name, :autofocus => true, :required => true %>
-  </p>
-
-  <p>
-    <%= f.label :last_name %>
-    <%= f.text_field :last_name, :required => true %>
-  </p>
-
-  <p>
-    <%= f.label :email %>
-    <%= f.text_field :email, :required => true %>
-
-    <!-- :input_html => { :value => 'user@domain.com' } -->
-  </p>
-
-  <p>
-    <%= f.label :password %>
-    <%= f.password_field :password %>
-  </p>
-
-  <p>
-    <%= f.label :password_confirmation %>
-    <%= f.password_field :password_confirmation %>
-  </p>
+<%= f.password_field :password_confirmation, :class => 'form-control', :placeholder => 'Password confirmation' %>
+      </div>
+      <div class="modal-footer">
+          <% if @user.errors.any? %>
+          <ol>
+          <% @user.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+          <% end %>
+          </ol>
+          <% end %>
+      <%= submit_tag 'Go!', :class => "btn btn-primary" %>
+        <% end %>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
 
 
-  <p>
-    <%= f.submit %>
-  </p>
-<% end %>
+<script>$('.modal').modal()</script>
 
 
