@@ -1,99 +1,102 @@
+<div class="form=group">
 <h1>Edit Profile</h1>
-
-<%= image_tag(@user.profile_url(:medium)) %>
+<div class="edit-image">
+<%= image_tag(@user.profile_url(:large), :class => 'img-rounded') %>
+</div>
 
 <%= form_for @user do |f| %>
 
   <p>
     <%= f.label :first_name %>
-    <%= f.text_field :first_name, :autofocus => true, :required => true %>
+    <%= f.text_field :first_name, :autofocus => true, :required => true, :class => 'form-control' %>
   </p>
 
   <p>
     <%= f.label :last_name %>
-    <%= f.text_field :last_name, :required => true %>
+    <%= f.text_field :last_name, :required => true, :class => 'form-control' %>
   </p>
 
   <p>
     <%= f.label :email %>
-    <%= f.text_field :email, :required => true %>
+    <%= f.text_field :email, :required => true, :class => 'form-control' %>
   </p>
 
   <p>
     <%= f.label :password %>
-    <%= f.password_field :password %>
+    <%= f.password_field :password, :class => 'form-control' %>
   </p>
 
   <p>
     <%= f.label :password_confirmation %>
-    <%= f.password_field :password_confirmation %>
+    <%= f.password_field :password_confirmation, :class => 'form-control' %>
   </p>
 
   <p>
     <%= f.label :dob %>
-    <%= f.text_field :dob, :required => true %>
+    <%= f.text_field :dob, :required => true, :class => 'form-control' %>
   </p>
 
   <p>
     <%= f.label :phone %>
-    <%= f.text_field :phone %>
+    <%= f.text_field :phone, :class => 'form-control' %>
   </p>
 
   <p>   
     <%= f.label :description %>     
-    <%= f.text_field :description %>
+    <%= f.text_field :description, :class => 'form-control' %>
   </p>  
 
   <p>   
     <%= f.label :smoker %>     
-    <%= f.text_field :smoker %>
+    <%= f.text_field :smoker, :class => 'form-control' %>
   </p>  
 
   <p>   
     <%= f.label :interests %>     
-    <%= f.text_field :interests %>
+    <%= f.text_field :interests, :class => 'form-control' %>
   </p>  
 
   <p>   
     <%= f.label :car %>     
-    <%= f.text_field :car %>
+    <%= f.text_field :car, :class => 'form-control' %>
   </p>  
 
   <p>   
     <%= f.label :car_type %>     
-    <%= f.text_field :car_type %>
+    <%= f.text_field :car_type, :class => 'form-control' %>
   </p>  
 
    <p>   
     <%= f.label :car_year %>     
-    <%= f.text_field :car_year %>
+    <%= f.text_field :car_year, :class => 'form-control' %>
   </p> 
 
   <p>   
     <%= f.label :car_model %>     
-    <%= f.text_field :car_model %>
+    <%= f.text_field :car_model, :class => 'form-control' %>
   </p>  
 
   <p>   
     <%= f.label :occupation %>     
-    <%= f.text_field :occupation %>
+    <%= f.text_field :occupation, :class => 'form-control' %>
   </p> 
 
   <p> 
     <%= f.label :profile, 'Profile Picture' %>
-    <%= f.file_field :profile %> 
+    <%= f.file_field :profile, :class => 'form-control' %> 
   </p> 
 
   <p>
     <%= f.label :url, 'or input URL' %>
-    <%= f.text_field :remote_profile_url %>
+    <%= f.text_field :remote_profile_url, :class => 'form-control' %>
   </p>
 
 
-  <p>
-    <%= f.submit %>
-  </p>
+<p>
+  <%= f.submit :class => 'btn btn-primary' %>
+</p>
 <% end %>
+</div>
 
 
 

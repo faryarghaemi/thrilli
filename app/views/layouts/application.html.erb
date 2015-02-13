@@ -7,7 +7,7 @@
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 
-      <script src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
+    
 </head>
 <body>
 <div id="main">
@@ -50,9 +50,11 @@
   </div><!-- /.container-fluid -->
 </nav>
 
+
     
 
 <div class="container"> 
+<script src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
   <%= yield %>
 </div>
 </div>

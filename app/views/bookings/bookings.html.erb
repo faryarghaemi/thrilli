@@ -7,29 +7,38 @@
 <% end %>
 
 <% confirmed.each do |booking| %>
-
-
-
-  <%=  %>
-
-  <p><%= image_tag(booking.adventure.user.profile_url(:medium)) %><%= link_to(booking.adventure.user.first_name, booking.adventure.user(booking.adventure.user.id)) %>'s <%= link_to(booking.adventure.title, booking.adventure(booking.adventure.id)) %> Adventure</p>
-
+<div class="adventure-info">
+    <%= link_to(booking.adventure.user.first_name, booking.adventure.user(booking.adventure.user.id)) %>'s 
+    <%= link_to(booking.adventure.title, booking.adventure(booking.adventure.id)) %>
+    <p class="adventure-word">Adventure</p>
+</div>
+  <div class="creator-stuff">
+  <%= image_tag(booking.adventure.user.profile_url(:medium), :class => "img-circle") %>
   
-  <%= image_tag(booking.adventure.profile_url(:medium)) %>
-  <p><%= booking.adventure.user.first_name %> says: '<%= booking.message_decision %>'</p>
-
-  <p>
-
-  Other adventurers on the trip:   
-
-  <% booking.adventure.bookings.where(:accepted => 'yes').each do |booking_two| %>
-
-    <%= image_tag(booking_two.user.profile_url(:medium)) %>
-    <%= booking_two.user.first_name %>
-
-  <% end %>
   
-  </p>
+  <div class="creator-msg">
+    <%= booking.adventure.user.first_name %> says: '<%= booking.message_decision %>'
+  </div>
+  </div>
+
+  <div class="adventure-img">
+    <%= image_tag(booking.adventure.profile_url(:large), :class => 'img-rounded') %>
+  </div>
+
+  <div class="fellow-adventurers">
+      <h4 class="fellow-adventures-title">Adventurers on the trip:</h4>
+
+      <div class="fellow-adventurer">
+        <% booking.adventure.bookings.where(:accepted => 'yes').each do |booking_two| %>
+
+                <%= image_tag(booking_two.user.profile_url(:medium), :class => "img-circle fellow-adventurer-profile") %>
+                <h3 class="fellow-adventurer-name">
+                  <%= booking_two.user.first_name%>
+                </h3> 
+
+              <% end %>
+      </div>
+  </div>
 <% end %>
 
 
@@ -41,11 +50,16 @@
 <% end %>
 
 <% pending.each do |booking| %>
-
-  <p><%= link_to(booking.adventure.user.first_name, booking.adventure.user(booking.adventure.user.id)) %>'s <%= link_to(booking.adventure.title, booking.adventure(booking.adventure.id)) %> Adventure</p>
-
-  <%= image_tag(booking.adventure.profile_url(:medium)) %>
+<div class="adventure-info">
+    <%= link_to(booking.adventure.user.first_name, booking.adventure.user(booking.adventure.user.id)) %>'s <%= link_to(booking.adventure.title, booking.adventure(booking.adventure.id)) %> <p class="adventure-word">Adventure</p>
+</div>
+  <div class="creator-stuff">
+  <%= image_tag(booking.adventure.user.profile_url(:medium), :class => "img-circle") %>
+  </div>
+  <div class="adventure-img">
+  <%= image_tag(booking.adventure.profile_url(:large), :class => "img-rounded") %>
 <% end %>
+</div>
 
 
 <% cancellations = @bookings.where(:accepted => 'no' ) %>
@@ -55,11 +69,23 @@
 <% end %>
 
 <% cancellations.each do |booking| %>
+<div class="adventure-info">
+  <%= link_to(booking.adventure.user.first_name, booking.adventure.user(booking.adventure.user.id)) %>'s <%= link_to(booking.adventure.title, booking.adventure(booking.adventure.id)) %> <p class="adventure-word">Adventure</p>
+</div>
 
-  <p><%= link_to(booking.adventure.user.first_name, booking.adventure.user(booking.adventure.user.id)) %>'s <%= link_to(booking.adventure.title, booking.adventure(booking.adventure.id)) %> Adventure</p>
+  <div class="creator-stuff">
+  <%= image_tag(booking.adventure.user.profile_url(:medium), :class => "img-circle") %>
 
-  <%= image_tag(booking.adventure.profile_url(:medium)) %>
-  <p><%= booking.adventure.user.first_name %> says: '<%= booking.message_decision %>'</p>
+
+  <div class="creator-msg">
+    <%= booking.adventure.user.first_name %> says: '<%= booking.message_decision %>'
+  </div>
+  </div>
+
+  <div class="adventure-img">
+  <%= image_tag(booking.adventure.profile_url(:large), :class => "img-rounded") %>
+  </div>
+
 <% end %>
 
 

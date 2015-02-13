@@ -1,13 +1,14 @@
 <h3>
   <%= flash[:error] if flash[:error].present? %>
 </h3>
-
+<div class="form-group">
 <h4>Please tell <%= @booking.user.first_name %> why they can't join your adventure.</h4>
 
 <%= form_for [@adventure, @booking] do |f| %>
 
-  <%= f.label :message_decision, 'Message', :required => true %>
-  <%= f.text_field :message_decision %>
+  
+  <%= f.text_field :message_decision, :class => 'form-control', :required => true, :placeholder => 'Message' %>
 
-<%= f.submit 'Send Message' %>
+<%= f.submit 'Send Message', :class => 'btn btn-primary' %>
 <% end %>
+</div>

@@ -5,7 +5,7 @@
     <% accepted = adventure.bookings.where :accepted => 'yes' %>
 
     <% if accepted.count < adventure.seats %>
-
+    <div class="mine">
       <p>
         <%= link_to('Edit Adventure', edit_adventure_path(adventure)) %> |
         <%= link_to('Delete Adventure', adventures_disappear_path(:id => adventure.id), :data => {:confirm => 'Are you sure?'}) %>
@@ -14,27 +14,32 @@
       <p>
         <%= image_tag(adventure.profile_url(:medium)) %>
       </p>
-       
-
-      <p>
-        <%= link_to(adventure.title, adventure) %>
-      </p>
 
       <p>
         <%= link_to('View Booking Requests', adventure_bookings_path(adventure)) %>
       </p>
 
-    <% else %>
+      <h2>
+        <%= link_to(adventure.title, adventure) %>
+      </h2>
 
+    </div>
+
+    <% else %>
+    <div class="min">
       <p>
         <%= image_tag(adventure.profile_url(:medium)) %>
       </p>
       <p>
-        <%= link_to(adventure.title, adventure) %> (FULL)
+        <%= link_to('View Booking Requests', adventure_bookings_path(adventure)) %>
       </p>
+      <h2>
+        <%= link_to(adventure.title, adventure) %> (FULL)
+      </h2>
       <p>
         <%= link_to('View Booking Requests', adventure_bookings_path(adventure)) %>
       </p>
+    </div>
     <% end %>
 
   </div>

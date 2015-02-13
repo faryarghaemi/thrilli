@@ -1,9 +1,14 @@
-<%= image_tag(@booking.user.profile_url(:medium)) %>
+<div class="wrap-left">
+  
+  <%= image_tag(@booking.user.profile_url(:large), :class => 'img-rounded') %>
+
+</div>
 
 
-  <h2>Booking Info:</h2>
+<div class="wrap-right">
+  <!-- <h2>Booking Info:</h2> -->
 
-  <p><%= link_to('Accept', yes_path(:adventure_id => @adventure.id, :booking_id => @booking.id)) %> or  <%= link_to('Reject', no_path(:adventure_id => @adventure.id, :booking_id => @booking.id)) %></p>
+  <p><%= link_to('Accept', yes_path(:adventure_id => @adventure.id, :booking_id => @booking.id), :class => 'btn btn-primary') %> or  <%= link_to('Reject', no_path(:adventure_id => @adventure.id, :booking_id => @booking.id), :class => 'btn btn-danger') %></p>
 
 
   <h3> <%= @booking.user.first_name %></h3>
@@ -52,6 +57,9 @@
   <% if @booking.user.car_model != nil && @booking.user.car_model != "" %>
     <p>Car model: <%= @booking.user.car_model %></p>
   <% end %>
+
+</div>
+  
 
 
 

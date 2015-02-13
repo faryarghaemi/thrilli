@@ -2,6 +2,7 @@ class UsersController < ApplicationController
   before_action :deleted? 
   before_action :check_if_admin, :only => [:index] 
   require 'mandrill'
+  before_action :logged_in?, :only => [:show]
 
   def index
     @users = User.all 

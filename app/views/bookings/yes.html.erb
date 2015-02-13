@@ -1,11 +1,12 @@
 <h3>Thank you for accepting <%= @booking.user.first_name %>!</h3>
 
 <h4>Message <%= @booking.user.first_name %> more information about you or the adventure if you'd like.</h4>
-
+<div class="form-group">
 <%= form_for [@adventure, @booking] do |f| %>
 
-  <%= f.label :message_decision, 'Message' %>
-  <%= f.text_field :message_decision %>
 
-<%= f.submit 'Send Message' %>
+  <%= f.text_field :message_decision, :class => 'form-control', :required => true, :placeholder => 'Message' %>
+
+<%= f.submit 'Send Message', :class => 'btn btn-primary' %>
 <% end %>
+</div>

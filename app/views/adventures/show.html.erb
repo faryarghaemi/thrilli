@@ -1,7 +1,7 @@
 <h1><%= @adventure.title %></h1>
 
 
-<%= image_tag(@adventure.profile_url(:medium)) %>
+<%= image_tag(@adventure.profile_url(:huge)) %>
 
 <p>
   <% if (@adventure.booking_ids & @current_user.booking_ids).empty? && (@adventure.user_id != @current_user.id) %>
@@ -15,12 +15,13 @@
   <%= link_to('Edit Adventure', edit_adventure_path(@adventure)) %> | <%= link_to('Delete Adventure', adventures_disappear_path(:id => @adventure.id), :data => {:confirm => 'Are you sure?'}) %>
   <% end %>
 </p>
-<% if @adventure.checkin != nil%>
+<p class="text-muted"><% if @adventure.checkin != nil%>
   <%= @adventure.checkin.strftime('%A, %b %e, %Y') %>
+</p>
 <% end %>
-<% @adventure.attributes.except('image', 'created_at', 'updated_at', 'user_id', 'disappear', 'id', 'latitude', 'longitude', 'profile', 'lat', 'lon', 'pickup_location', 'activity_location', 'city_pickup', 'city_activity', 'checkin', 'checkout', 'title', 'seats').each do |k,v| %>
+<% @adventure.attributes.except('image', 'created_at', 'updated_at', 'user_id', 'disappear', 'id', 'latitude', 'longitude', 'profile', 'lat', 'lon', 'pickup_location', 'activity_location', 'city_pickup', 'city_activity', 'checkin', 'checkout', 'title').each do |k,v| %>
   <% if v != nil && v != "" %>
-  <p>
+  <p class="text-muted">
     <%= k.humanize %>: <%= v %>
   </p>
   <% end %>

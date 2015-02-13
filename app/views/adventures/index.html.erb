@@ -1,35 +1,42 @@
 
+
 <% if @adventures.count == 0 %>
-<%= flash[:error] = "Your search did not match any results. Please try again. " %>
+  <%= flash[:error] = "Your search did not match any results. Please try again. " %>
 <% end %>
+
+<div class="row">
 
 <!-- all adventures (with available car seats and not deleted) -->
 <% @adventures.each do |adventure| %>
   
   <% accepted = adventure.bookings.where :accepted => 'yes' %>
   <% if accepted.count < adventure.seats %>
-<div class="col-md-4">
-  <div class="<%= ("disappear" if adventure.disappear?) %> tbd"><%= link_to(image_tag(adventure.profile_url(:large), :class => "img-rounded"), adventure) %>
 
-  <%= adventure.user.first_name %>'s <%= link_to(adventure.title, adventure) %> Adventure
-    <p><% if adventure.checkin != nil%>
-      <%= adventure.checkin.strftime('%A, %b %e, %Y') %></p>
-    <% end %>
-  </div>
-  </div>
+    <div class="col-md-4 portfolio-item <%= ("disappear" if adventure.disappear?) %>">
+      
+      <%= link_to(image_tag(adventure.profile_url(:large), :class => "img-rounded"), adventure) %>
+      <h4> 
+      <%= link_to(adventure.user.first_name, user_path(adventure.user.id)) %>'s <%= link_to(adventure.title, adventure) %> Adventure
+      </h4>
+
+    </div>
 
   <% else %>
 
-  <!-- adventures that are full  -->
-    FULL
-    
-  <div class="<%= ("disappear" if adventure.disappear?) %> tbd"><%= link_to(image_tag(adventure.profile_url(:medium), :class => "img-rounded"), adventure) %>
-
-  <%= adventure.user.first_name %>'s <%= link_to(adventure.title, adventure) %> Adventure</div>
+    <!-- adventures that are full  -->
+      <!-- FULL -->
+      
+    <div class="col-md-4 <%= ("disappear" if adventure.disappear?) %>"><%= link_to(image_tag(adventure.profile_url(:large), :class => "img-rounded"), adventure) %>
+    <h4>
+    <%= adventure.user.first_name %>'s <%= link_to(adventure.title, adventure) %> Adventure
+    </h4>
+    </div>
 
   
   <% end %>
 <% end %>
+</div>
+
 
 
 

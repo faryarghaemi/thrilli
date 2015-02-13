@@ -18,9 +18,7 @@
 <%= f.password_field :password, :class => 'form-control', :placeholder => 'Password' %>
 
 <%= f.password_field :password_confirmation, :class => 'form-control', :placeholder => 'Password confirmation' %>
-      </div>
-      <div class="modal-footer">
-          <% if @user.errors.any? %>
+      <% if @user.errors.any? %>
           <ol>
           <% @user.errors.full_messages.each do |msg| %>
           <li><%= msg %></li>
@@ -29,6 +27,8 @@
           <% end %>
       <%= submit_tag 'Go!', :class => "btn btn-primary" %>
         <% end %>
+      </div>
+      <div class="modal-footer">
       </div>
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->

@@ -1,15 +1,16 @@
-<h1>Booking Details</h1>
-(You should recieve an email shortly)
+<p class="text-muted"><h1>Booking Details</h1>
+(You should recieve an email shortly)</p>
 
-<p><%= image_tag(@adventure.profile_url(:medium)) %></p>
-<p><%= @adventure.title %></p>
+<p><%= image_tag(@adventure.profile_url(:large)) %></p>
+<p class="text-muted"><%= @adventure.title %></p>
 
 <% if @adventure.checkin != nil%>
-  <%= @adventure.checkin.strftime('%A, %b %e, %Y') %>
+  <p class="text-muted"><%= @adventure.checkin.strftime('%A, %b %e, %Y') %>
+  </p>
 <% end %>
 <% @adventure.attributes.except('image', 'created_at', 'updated_at', 'user_id', 'disappear', 'id', 'latitude', 'longitude', 'profile', 'lat', 'lon', 'pickup_location', 'activity_location', 'city_pickup', 'city_activity', 'checkin', 'checkout', 'title', 'seats').each do |k,v| %>
   <% if v != nil && v != "" %>
-  <p>
+  <p class="text-muted">
     <%= k.humanize %>: <%= v %>
   </p>
   <% end %>

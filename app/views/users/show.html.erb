@@ -5,7 +5,7 @@
 <%= button_to('Delete user', @user, :method => 'delete', :data => {:confirm => 'Are you sure?'}) %>
 <% end %>
 
-<%= image_tag(@user.profile_url(:medium)) %>
+<%= image_tag(@user.profile_url(:large), :class => 'img-rounded') %>
 
 <% @user.attributes.except('image', 'created_at', 'updated_at', 'is_admin', 'password_digest', 'first_name', 'last_name', 'id', 'profile').each do |k,v| %>
   <% if v != nil && v != "" %>

@@ -1,12 +1,17 @@
+<div class="form-group">
 <h1>Booking Request Page</h1>
 
-<p>Tell <%= @adventure.user.first_name %> a little about yourself: </p>
+<%= image_tag(@adventure.profile_url(:medium)) %>
+<p class="text-muted"><%= @adventure.title %></p>
+
+<p class="text-muted">Tell <%= @adventure.user.first_name %> a little about yourself: </p>
 
 <%=  form_for [@adventure,@booking] do |f| %>
 
 <%= f.label :message %>
-<%= f.text_field :message %>
+<%= f.text_field :message, :class => 'form control' %>
 
-<%= f.submit %>
+<%= f.submit :class => 'btn btn-primary' %>
 
 <% end  %>
+</div>

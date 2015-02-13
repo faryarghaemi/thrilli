@@ -1,12 +1,15 @@
-<%= image_tag(@adventure.profile_url(:medium)) %>
+<div class="adventure-img"><%= image_tag(@adventure.profile_url(:medium), :class => "img-rounded") %>
+</div>
 <h1> <%= @adventure.title %></h1>
 
 
-<% @bookings.each do |booking| %>
 
-<p><%= image_tag(booking.user.profile_url(:medium)) %></p>
+<% @bookings.each do |booking| %>
+<div class="col-md-4 request-adventurer-profile">
+<p><%= image_tag(booking.user.profile_url(:medium), :class => "img-circle") %></p>
 <p><%= link_to(booking.user.first_name, bookings_user_path(:adventure_id => @adventure.id, :booking_id => booking.id, :id => booking.user_id)) %> would like to join your adventure.</p>
-<p><%= booking.message %></p>
+<p>'<%= booking.message %>'</p>
+</div>
 
 
 <% end %>
