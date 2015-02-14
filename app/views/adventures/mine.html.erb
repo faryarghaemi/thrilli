@@ -12,7 +12,7 @@
       </p>
 
       <p>
-        <%= image_tag(adventure.profile_url(:medium)) %>
+        <%= image_tag(adventure.profile_url(:medium), :class => 'img-rounded') %>
       </p>
 
       <p>
@@ -28,7 +28,7 @@
     <% else %>
     <div class="min">
       <p>
-        <%= image_tag(adventure.profile_url(:medium)) %>
+        <%= image_tag(adventure.profile_url(:medium), :class => 'img-rounded') %>
       </p>
       <p>
         <%= link_to('View Booking Requests', adventure_bookings_path(adventure)) %>

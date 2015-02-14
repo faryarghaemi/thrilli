@@ -1,7 +1,7 @@
 <div class="form-group">
 <h1>Booking Request Page</h1>
 
-<%= image_tag(@adventure.profile_url(:medium)) %>
+<%= image_tag(@adventure.profile_url(:medium), :class => 'img-rounded') %>
 <p class="text-muted"><%= @adventure.title %></p>
 
 <p class="text-muted">Tell <%= @adventure.user.first_name %> a little about yourself: </p>

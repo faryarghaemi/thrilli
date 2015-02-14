@@ -1,7 +1,7 @@
 <p class="text-muted"><h1>Booking Details</h1>
 (You should recieve an email shortly)</p>
 
-<p><%= image_tag(@adventure.profile_url(:large)) %></p>
+<p><%= image_tag(@adventure.profile_url(:large), :class => 'img-rounded') %></p>
 <p class="text-muted"><%= @adventure.title %></p>
 
 <% if @adventure.checkin != nil%>

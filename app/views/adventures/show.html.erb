@@ -1,7 +1,7 @@
 <h1><%= @adventure.title %></h1>
 
 
-<%= image_tag(@adventure.profile_url(:huge)) %>
+<%= image_tag(@adventure.profile_url(:huge), :class => 'img-rounded') %>
 
 <p>
   <% if (@adventure.booking_ids & @current_user.booking_ids).empty? && (@adventure.user_id != @current_user.id) %>

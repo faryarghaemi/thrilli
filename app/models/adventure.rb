@@ -36,7 +36,7 @@
 
 class Adventure < ActiveRecord::Base
   def self.search(query)
-    where("adventure_type ilike ? OR title ilike ? OR other ilike ? OR description ilike ? AND checkin > now()", "%#{query}%", "%#{query}%", "%#{query}%", "%#{query}%") 
+    where("adventure_type ilike ? OR title ilike ? OR other ilike ? OR description ilike ? OR city_pickup ilike ? OR city_activity ilike ? AND checkin > now()", "%#{query}%", "%#{query}%", "%#{query}%", "%#{query}%", "%#{query}%", "%#{query}%") 
   end
 
   mount_uploader :profile, ProfileUploader 

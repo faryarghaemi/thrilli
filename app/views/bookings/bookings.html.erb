@@ -3,10 +3,11 @@
 <% confirmed = @bookings.where(:accepted => 'yes') %>
 
 <% if confirmed.count > 0 %>
-  <h1>Confirmed Bookings</h1>
+  <h1 class="bookings">Confirmed Bookings</h1>
 <% end %>
 
 <% confirmed.each do |booking| %>
+<div class="border"> 
 <div class="adventure-info">
     <%= link_to(booking.adventure.user.first_name, booking.adventure.user(booking.adventure.user.id)) %>'s 
     <%= link_to(booking.adventure.title, booking.adventure(booking.adventure.id)) %>
@@ -39,6 +40,7 @@
               <% end %>
       </div>
   </div>
+  </div>
 <% end %>
 
 
@@ -46,10 +48,11 @@
 <% pending = @bookings.where(:accepted => nil ) %>
 
 <% if pending.count > 0 %>
-  <h1>Pending Bookings</h1>
+  <h1 class="bookings">Pending Bookings</h1>
 <% end %>
 
 <% pending.each do |booking| %>
+<div class="border"> 
 <div class="adventure-info">
     <%= link_to(booking.adventure.user.first_name, booking.adventure.user(booking.adventure.user.id)) %>'s <%= link_to(booking.adventure.title, booking.adventure(booking.adventure.id)) %> <p class="adventure-word">Adventure</p>
 </div>
@@ -58,17 +61,19 @@
   </div>
   <div class="adventure-img">
   <%= image_tag(booking.adventure.profile_url(:large), :class => "img-rounded") %>
-<% end %>
-</div>
+  </div>
+  </div>
+  <% end %>
 
 
 <% cancellations = @bookings.where(:accepted => 'no' ) %>
 
 <% if cancellations.count > 0 %>
-  <h1>Cancellations</h1>
+  <h1 class="bookings">Cancellations</h1>
 <% end %>
 
 <% cancellations.each do |booking| %>
+<div class="border"> 
 <div class="adventure-info">
   <%= link_to(booking.adventure.user.first_name, booking.adventure.user(booking.adventure.user.id)) %>'s <%= link_to(booking.adventure.title, booking.adventure(booking.adventure.id)) %> <p class="adventure-word">Adventure</p>
 </div>
@@ -85,6 +90,7 @@
   <div class="adventure-img">
   <%= image_tag(booking.adventure.profile_url(:large), :class => "img-rounded") %>
   </div>
+</div>
 
 <% end %>
 
