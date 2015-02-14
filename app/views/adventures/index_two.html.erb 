@@ -28,19 +28,19 @@
     <!-- adventures that are full  -->
       <!-- FULL -->
       
-    <div class="col-md-4 portfolio-item <%= ("disappear" if adventure.disappear?) %>">
-      
-      <%= link_to(image_tag(adventure.profile_url(:large), :class => "img-rounded"), adventure) %>
-      <h4> 
-      <%= link_to(adventure.user.first_name, user_path(adventure.user.id)) %>'s <%= link_to(adventure.title, adventure) %> Adventure
-      </h4>
-
+    <div class="col-md-4 portfolio-item <%= ("disappear" if adventure.disappear?) %>"><%= link_to(image_tag(adventure.profile_url(:large), :class => "img-rounded"), adventure) %>
+    <h4>
+    <%= adventure.user.first_name %>'s <%= link_to(adventure.title, adventure) %> Adventure
+    </h4>
     </div>
 
   
   <% end %>
 
-
+  <% if (i+1) % 3 == 0 %>
+    </div>
+    <div class="row">
+  <% end %>
 
 <% end %>
 
