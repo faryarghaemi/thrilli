@@ -29,17 +29,18 @@
   <div class="fellow-adventurers">
       <h4 class="fellow-adventures-title">Adventurers on the trip:</h4>
 
-      <div class="fellow-adventurer">
+      
         <% booking.adventure.bookings.where(:accepted => 'yes').each do |booking_two| %>
 
+              <div class="fellow-adventurer">
                 <%= image_tag(booking_two.user.profile_url(:medium), :class => "img-circle fellow-adventurer-profile") %>
                 <h3 class="fellow-adventurer-name">
                   <%= booking_two.user.first_name%>
                 </h3> 
-
+               </div>
               <% end %>
+     
       </div>
-  </div>
   </div>
 <% end %>
 
