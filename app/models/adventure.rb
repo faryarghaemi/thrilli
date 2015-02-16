@@ -35,6 +35,15 @@
 #
 
 class Adventure < ActiveRecord::Base
+
+  def can_edit?(user)
+    is_owner?(user) || user.is_admin? 
+  end 
+
+  def is_owner?(user)
+    self.user == user 
+  end
+  
   def self.search(query)
     where("adventure_type ilike ? OR title ilike ? OR other ilike ? OR description ilike ? OR city_pickup ilike ? OR city_activity ilike ? AND checkin > now()", "%#{query}%", "%#{query}%", "%#{query}%", "%#{query}%", "%#{query}%", "%#{query}%") 
   end

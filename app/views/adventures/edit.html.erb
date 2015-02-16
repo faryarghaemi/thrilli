@@ -1,3 +1,7 @@
+<% if @adventure.can_edit?(@current_user) %>
+
 <h1>Edit Adventure</h1>
 <%= image_tag(@adventure.profile_url(:large), :class => 'img-rounded') %>
 <%= render :partial => 'form' %>
+
+<% end %>
